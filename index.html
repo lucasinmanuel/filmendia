@@ -9,46 +9,47 @@
     </head>
 
     <body>
-        <header>
-            <div class="logo-header">
-                <h3>Filmendia</h3>
-            </div>
-            <nav class="menu-desktop">
-                <ul>
-                    <li>HOME</li>
-                    <li>SOBRE</li>
-                </ul>
-            </nav>
-        </header>
-        <div class="previewPopular-wrapper">
 
-        </div><!--previewPopular-wrapper-->
-        <div class="previewGenero-wrapper">
+        <main>
+            <header>
+                <div class="logo-header">
+                    <h3>Filmendia</h3>
+                </div>
+                <nav class="menu-desktop">
+                    <ul>
+                        <li>HOME</li>
+                        <li>SOBRE</li>
+                    </ul>
+                </nav>
+            </header>
+            <section class="banner-home">
 
-        </div><!--previewGenero-wrapper-->
-        <script>
-            window.onload = function(){
-                fetch('https://api.themoviedb.org/3/movie/500?api_key=d9006a76b9606894cb5d01eda1af5904&language=pt-br', {
-                    method: 'GET'
-                })
-                .then(response => response.json())
-                .then(function(json){
-                    const container = document.querySelector('.container')
-                    /*json.results.map((val)=>{
-                        container.innerHTML += ` 
-                        
-                        <img src="https://api.themoviedb.org${val.poster_path}" />
-                        <h1>${val.title}</h1>
-                        <span><b>Lançamento: </b>${val.release_date}</span>
-                        <p style="border-bottom: 1px solid #ccc;padding-bottom: 10px;"><b>Sinopse: </b>${val.overview}</p>
-                        
-                        `
-                    })*/
-                    console.log(json)
-                })
-                
-            }
-        </script>
+            </section>
+            <div class="container">
+
+                <section class="previewPopular-wrapper">
+                    <div class="previewPopular-texts">
+                        <h2>Popular</h2>
+                        <span class="preview-arrowLeft">&#8249</span>
+                        <span class="preview-arrowRight">&#8250</span>
+                        <a href="#">Todos os filmes</a>
+                    </div>
+                    <div class="previewPopular-images">
+                        <!--Adicionando dinamicamente-->
+            
+                    </div>
+                </section><!--previewPopular-wrapper-->
+
+                <section class="previewGenero-wrapper">
+
+                </section><!--previewGenero-wrapper-->
+
+            </div><!--container-->
+        </main>
+
+        <script src="js/fetchAPI.js"></script>
+        <script src="js/clickPreviewArrow.js"></script>
+
     </body>
 
 </html>
