@@ -1,17 +1,40 @@
-<html>
-    <body>
-        <div class="container">
+<!DOCTYPE html>
+<html lang="pt-br">
 
-        </div>
+    <head>
+        <title>Filmendia</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="stylesheet" href="styles/css/index.css" />
+    </head>
+
+    <body>
+        <header>
+            <div class="logo-header">
+                <h3>Filmendia</h3>
+            </div>
+            <nav class="menu-desktop">
+                <ul>
+                    <li>HOME</li>
+                    <li>SOBRE</li>
+                </ul>
+            </nav>
+        </header>
+        <div class="previewPopular-wrapper">
+
+        </div><!--previewPopular-wrapper-->
+        <div class="previewGenero-wrapper">
+
+        </div><!--previewGenero-wrapper-->
         <script>
             window.onload = function(){
-                /*fetch('https://api.themoviedb.org/3/movie/popular?api_key=506fadb0256c13349acc05dabebf9604&language=en-US&page=2', {
+                fetch('https://api.themoviedb.org/3/movie/500?api_key=d9006a76b9606894cb5d01eda1af5904&language=pt-br', {
                     method: 'GET'
                 })
                 .then(response => response.json())
                 .then(function(json){
                     const container = document.querySelector('.container')
-                    json.results.map((val)=>{
+                    /*json.results.map((val)=>{
                         container.innerHTML += ` 
                         
                         <img src="https://api.themoviedb.org${val.poster_path}" />
@@ -20,11 +43,12 @@
                         <p style="border-bottom: 1px solid #ccc;padding-bottom: 10px;"><b>Sinopse: </b>${val.overview}</p>
                         
                         `
-                    })
+                    })*/
                     console.log(json)
                 })
-                */
+                
             }
         </script>
     </body>
+
 </html>
