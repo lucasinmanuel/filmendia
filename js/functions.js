@@ -6,7 +6,7 @@ window.onload = () => {
     .then(response => response.json())
     .then(function(json){
         const previewImages = document.querySelector('.preview-images')
-        json.results.map((val)=>{
+        json.results.slice(0,18).map((val)=>{
             
             previewImages.innerHTML += `
             
@@ -19,31 +19,38 @@ window.onload = () => {
         })
         console.log(json)
     })
-
+    
     clickPreviewArrowns()
 
     function clickPreviewArrowns(){
 
         const previewArrow = document.querySelectorAll('.preview-texts span')
+        const previewImages = document.querySelector('.preview-images')
+        var i = 0
         previewArrow[0].addEventListener('click',()=>{
             //SETA ESQUERDA
-            let i = 0
-            i += 198
-            const previewImages = document.querySelector('.preview-images')
-            previewImages.style.right = i.toString()+'px'
+            if(i === 2){
+                previewImages.style.right = 1194+'px'
+                i = 1
+            }else if(i === 1){
+                previewImages.style.right = 0
+                i = 0
+            }
 
         })
 
         previewArrow[1].addEventListener('click',()=>{
             //SETA DIREITA
-            let i = 0
-            i++
-            console.log(i)
-            const previewImages = document.querySelector('.preview-images')
-            previewImages.style.right = i+'px'
+            if(i === 0){
+                previewImages.style.right = 1194+'px'
+                i = 1
+            }else if(i === 1){
+                previewImages.style.right = 2388+'px'
+                i = 2
+            }
+
         })
 
-    }
-    
-    
+    }/*clickPreviewArrowns*/
+       
 }
