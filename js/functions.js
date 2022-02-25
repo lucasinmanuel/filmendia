@@ -6,7 +6,7 @@ window.onload = () => {
     .then(response => response.json())
     .then(function(json){
         const previewImages = document.querySelector('.preview-images')
-        json.results.slice(0,18).map((val)=>{
+        json.results.slice(0,18).map(async(val)=>{
             
             previewImages.innerHTML += `
             
@@ -15,38 +15,48 @@ window.onload = () => {
                 </div>
             
             `
-
+            const qtdPreviewSingle = document.querySelectorAll('.preview-single').length
+            console.log(qtdPreviewSingle)
         })
-        console.log(json)
+        
     })
     
     clickPreviewArrowns()
 
     function clickPreviewArrowns(){
 
+        var click = 0
+
+        const sliderBullets = document.querySelector('.slider-bullets')
+        
+        /*for(var i = 0;i < qtdPreviewSingle / 6;i++){
+            sliderBullets.innerHTML += 'a'
+            
+        }*/
+        
         const previewArrow = document.querySelectorAll('.preview-texts span')
         const previewImages = document.querySelector('.preview-images')
-        var i = 0
+    
         previewArrow[0].addEventListener('click',()=>{
             //SETA ESQUERDA
-            if(i === 2){
+            if(click === 2){
                 previewImages.style.right = 1194+'px'
-                i = 1
-            }else if(i === 1){
+                click = 1
+            }else if(click === 1){
                 previewImages.style.right = 0
-                i = 0
+                click = 0
             }
 
         })
 
         previewArrow[1].addEventListener('click',()=>{
             //SETA DIREITA
-            if(i === 0){
+            if(click === 0){
                 previewImages.style.right = 1194+'px'
-                i = 1
-            }else if(i === 1){
+                click = 1
+            }else if(click === 1){
                 previewImages.style.right = 2388+'px'
-                i = 2
+                click = 2
             }
 
         })
