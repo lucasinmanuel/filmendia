@@ -36,7 +36,7 @@ header {
   overflow-x: hidden;
 }
 
-.previewPopular-texts {
+.preview-texts {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -46,10 +46,11 @@ header {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-bottom: 8px;
+  margin-top: 2px;
+  margin-bottom: 10px;
 }
 
-.previewPopular-texts h2 {
+.preview-texts h2 {
   font-size: 26px;
 }
 
@@ -69,26 +70,26 @@ header {
   background-color: #191919;
 }
 
-.previewPopular-texts a {
+.preview-texts a {
   text-decoration: none;
   color: gold;
   font-weight: bold;
 }
 
-.previewPopular-images {
+.preview-images {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 300%;
+  position: relative;
 }
 
-.previewPopular-single {
+.preview-single {
   padding-right: 13.5px;
 }
 
-.previewPopular-single img {
+.preview-single img {
   cursor: pointer;
 }
