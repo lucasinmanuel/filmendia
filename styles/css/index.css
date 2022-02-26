@@ -29,7 +29,7 @@ header {
   max-width: 1282px;
 }
 
-.previewPopular-wrapper {
+.preview-wrapper {
   width: 100%;
   background-color: #1E1E1E;
   padding: 8px 12px;
@@ -43,9 +43,6 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   margin-top: 2px;
   margin-bottom: 10px;
 }
@@ -68,6 +65,25 @@ header {
 
 .preview-arrowLeft:hover, .preview-arrowRight:hover {
   background-color: #191919;
+}
+
+.previewSlider-bullets {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 3px;
+}
+
+.previewSlider-bullets span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: white;
+  display: block;
+  margin: 0 5px;
 }
 
 .preview-texts a {
