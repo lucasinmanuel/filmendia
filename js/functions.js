@@ -17,10 +17,7 @@ window.onload = () => {
             
             `
 
-        })
-
-        const qtdPreviewSingle = document.querySelectorAll('.preview-single').length
-        initSliderBullets(qtdPreviewSingle)
+        })   
         
     })
 
@@ -32,7 +29,7 @@ window.onload = () => {
 
         const previewTopRatedImages = document.querySelector('.previewTopRated')
         jsonTopRated.results.slice(0,18).map((val)=>{
-
+            
             previewTopRatedImages.innerHTML += `
             
                 <div class="preview-single">
@@ -46,57 +43,74 @@ window.onload = () => {
     })
     
     clickPreviewArrowns()
-    var click = 0
 
-    function initSliderBullets(val){
-        const previewBullets = document.querySelector('.previewSlider-bullets')
-        for(var i = 0;i < val / 6;i++){
-            previewBullets.innerHTML += '<span></span>'
+    function alterarSliderBullets(indexPopular,indexTopRated){
+
+        const previewPopularBulletSingle = document.querySelectorAll('.previewPopular-bullets span')
+        const previewTopRatedBulletSingle = document.querySelectorAll('.previewTopRated-bullets span')
+        for(let i = 0;i < 3;i++){
+            previewPopularBulletSingle[i].style.backgroundColor = 'white'
+            previewTopRatedBulletSingle[i].style.backgroundColor = 'white'
         }
-        const previewBulletSingle = document.querySelectorAll('.previewSlider-bullets span')
-        previewBulletSingle[click].style.backgroundColor = '#ccc'
+        previewPopularBulletSingle[indexPopular].style.backgroundColor = 'gold'
+        previewTopRatedBulletSingle[indexTopRated].style.backgroundColor = 'gold'
+
     }
 
     function clickPreviewArrowns(){
 
-        const previewArrow = document.querySelectorAll('.preview-texts span.setaSpan')
-        const previewImages = document.querySelectorAll('.preview-images')
-        const qtdPreviewImages = () => {
-            if(previewImages.length != 1){
-                return previewImages.length * 6
-            }else{
-                return 6
+        const previewPopularArrow = document.querySelectorAll('.previewPopular-texts span.setaSpan')
+        const previewPopularImage = document.querySelector('.previewPopular')
+        var clickPreviewPopular = 0
+
+        previewPopularArrow[0].addEventListener('click',()=>{
+            //SETA ESQUERDA PREVIEW POPULAR
+            if(clickPreviewPopular === 2){
+                previewPopularImage.style.right = previewPopularImage.scrollWidth / 3+'px'
+                clickPreviewPopular = 1
+            }else if(clickPreviewPopular === 1){
+                previewPopularImage.style.right = 0
+                clickPreviewPopular = 0
             }
-        }
-
-        previewArrow[0].addEventListener('click',()=>{
-            //SETA ESQUERDA
-            const qtdSliderBullets = document.querySelectorAll('.preview-single').length / qtdPreviewImages() - 1
-            for(let i = 0;i < previewImages.length;i++){
-            
-                if(previewImages[i].classList[1] === 'previewPopular'){
-                    if(click === qtdSliderBullets){
-                        previewImages[i].style.right = 1194+'px'
-                        click = 1
-                    }
-                }else if(previewImages[i].classList[1] === 'previewTopRated'){
-
-                }
-
+            alterarSliderBullets(clickPreviewPopular,clickPreviewTopRated)
+        })
+        previewPopularArrow[1].addEventListener('click',()=>{
+            //SETA DIREITA PREVIEW POPULAR
+            if(clickPreviewPopular === 0){
+                previewPopularImage.style.right = previewPopularImage.scrollWidth / 3+'px'
+                clickPreviewPopular = 1
+            }else if(clickPreviewPopular === 1){
+                previewPopularImage.style.right = (previewPopularImage.scrollWidth / 3) * 2+'px'
+                clickPreviewPopular = 2
             }
-
+            alterarSliderBullets(clickPreviewPopular,clickPreviewTopRated)
         })
 
-        previewArrow[1].addEventListener('click',()=>{
-            //SETA DIREITA
-            if(click === 0){
-                previewImages[0].style.right = 1194+'px'
-                click = 1
-            }else if(click === 1){
-                previewImages[0].style.right = 2388+'px'
-                click = 2
+        const previewTopRatedArrow = document.querySelectorAll('.previewTopRated-texts span.setaSpan')
+        const previewTopRatedImage = document.querySelector('.previewTopRated')
+        var clickPreviewTopRated = 0
+        
+        previewTopRatedArrow[0].addEventListener('click',()=>{
+            //SETA ESQUERDA PREVIEW TOP RATED
+            if(clickPreviewTopRated === 2){
+                previewTopRatedImage.style.right = previewTopRatedImage.scrollWidth / 3+'px'
+                clickPreviewTopRated = 1
+            }else if(clickPreviewTopRated === 1){
+                previewTopRatedImage.style.right = 0
+                clickPreviewTopRated = 0
             }
-
+            alterarSliderBullets(clickPreviewPopular,clickPreviewTopRated)
+        })
+        previewTopRatedArrow[1].addEventListener('click',()=>{
+            //SETA DIREITA PREVIEW TOP RATED
+            if(clickPreviewTopRated === 0){
+                previewTopRatedImage.style.right = previewTopRatedImage.scrollWidth / 3+'px'
+                clickPreviewTopRated = 1
+            }else if(clickPreviewTopRated === 1){
+                previewTopRatedImage.style.right = (previewTopRatedImage.scrollWidth / 3) * 2+'px'
+                clickPreviewTopRated = 2
+            }
+            alterarSliderBullets(clickPreviewPopular,clickPreviewTopRated)
         })
         
     }/*clickPreviewArrowns*/
