@@ -44,12 +44,30 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin-top: 2px;
   margin-bottom: 10px;
 }
 
 .preview-texts h2 {
   font-size: 26px;
+  width: 30%;
+  text-align: left;
+}
+
+.preview-texts-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 40%;
 }
 
 .preview-arrowLeft, .preview-arrowRight {
@@ -95,6 +113,8 @@ header {
   text-decoration: none;
   color: gold;
   font-weight: bold;
+  width: 30%;
+  text-align: right;
 }
 
 .preview-images {
