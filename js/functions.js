@@ -20,16 +20,35 @@ window.onload = () => {
         })
         .then(response => response.json())
         .then((jsonPopular)=>{
-            console.log(genres)
-            const previewPopularImages = document.querySelector('.previewPopular')
+
             jsonPopular.results.slice(0,18).map((val)=>{
-                
+      
+                var generosPopular = []
+
+                genres.forEach((value) => {
+            
+                    for(let i = 0;i < val.genre_ids.length;i++){
+
+                        if(val.genre_ids[i] === value.id){
+                            generosPopular.push(value.name)
+                        }else if(val.genre_ids[i] === value.id){
+                            generosPopular.push(value.name)
+                        }else if(val.genre_ids[i] === value.id){
+                            generosPopular.push(value.name)
+                        }
+                        
+                    }
+
+                });
+
+                const previewPopularImages = document.querySelector('.previewPopular-images')
+    
                 previewPopularImages.innerHTML += `
                 
                     <div class="preview-single">
                         <img src="https://image.tmdb.org/t/p/w185${val.poster_path}" />
                     </div>
-                
+                    
                 `
 
             })   
@@ -42,8 +61,9 @@ window.onload = () => {
         })
         .then(response => response.json())
         .then((jsonTopRated)=>{
-
-            const previewTopRatedImages = document.querySelector('.previewTopRated')
+ 
+            const previewTopRatedImages = document.querySelector('.previewTopRated-images')
+            
             jsonTopRated.results.slice(0,18).map((val)=>{
                 
                 previewTopRatedImages.innerHTML += `
