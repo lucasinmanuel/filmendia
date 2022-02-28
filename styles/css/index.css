@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -8,10 +9,15 @@
 body {
   background-color: black;
   color: white;
+  font-family: 'Open Sans', sans-serif;
 }
 
 header {
   width: 100%;
+  background-color: #1E1E1E;
+}
+
+header .container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -21,6 +27,32 @@ header {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  padding: 5px 3%;
+}
+
+header .logo-header {
+  position: relative;
+  left: -12px;
+}
+
+nav.menu-desktop ul {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+nav.menu-desktop li {
+  margin-left: 20px;
+}
+
+nav.menu-desktop a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
 }
 
 .container {
