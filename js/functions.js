@@ -13,71 +13,74 @@ window.onload = () => {
     })
 
     function mandarGenresIds(genres){
+        console.log(genres)
+        //NÚMERO DE PÁGINAS DE FILMES QUE SERÃO VALIDADAS PARA UM GÊNERO
+        var numberPage = [1,2,3,4,5,6,7,8,9,10]
 
-        var numberPage = 1
+        var filmeIndex = 0
 
-        fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=d9006a76b9606894cb5d01eda1af5904&language=pt-br&page='+numberPage, {
-            method: 'GET'
-        })
-        .then(response=>response.json())
-        .then(async(jsonNowPlaying)=>{
+        numberPage.forEach((numPageAtual)=>{
 
-            console.log(jsonNowPlaying)
-            console.log(genres)
-            var filmeIndex = 0
+            fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=d9006a76b9606894cb5d01eda1af5904&language=pt-br&page='+numPageAtual, {
+                method: 'GET'
+            })
+            .then(response=>response.json())
+            .then((jsonNowPlaying)=>{
+                console.log(jsonNowPlaying)
+                jsonNowPlaying.results.forEach((val)=>{
 
-            await jsonNowPlaying.results.forEach((val)=>{
-
-                var generos = []
-       
-                genres.forEach((value) => {
-                   
-                    for(let i = 0;i < val.genre_ids.length;i++){
-                        
-                        if(val.genre_ids[i] === value.id){
-
-                            generos.push(value.name)
-    
-                        }
-                        
-                    }
-
-                });
-
-                const bannerHomeMisterio = document.querySelector('.bannerMisterio-wrapper')
-
-                generos.forEach((value)=>{
-
-                    if(value === 'Ação'){
-                        console.log(value)
-                        if(filmeIndex < 3){
+                    var generos = []
+                    //ANALISA O GÊNERO DO FILME E MANDA PARA O ARRAY generos
+                    genres.forEach((value) => {
+                    
+                        for(let i = 0;i < val.genre_ids.length;i++){
                             
-                            bannerHomeMisterio.innerHTML += `
+                            if(val.genre_ids[i] === value.id){
 
-                                <div class="bannerMisterio-images">
-                                    <img src="https://image.tmdb.org/t/p/w185${val.poster_path}" />
-                                </div>
-                                <div class="bannerMisterio-info">
-                                    <p>oiiiiiiiiiiiiiiiiiii</p>
-                                </div>
-
-                            `
-                            filmeIndex++
-
-                        }else{
+                                generos.push(value.name)
+        
+                            }
                             
-                            return false
-
                         }
-                        
-                    }
 
-                })
+                    });
 
-            })//JSON NOW_PLAYING PÁGINAS
-            
-            numberPage++
-            
+                    const bannerHomeMisterio = document.querySelector('.bannerMisterio-wrapper')
+
+                    generos.forEach((value)=>{
+
+                        if(value === 'Mistério'){
+                    
+                            if(filmeIndex < 3 && val.overview != "" && val.vote_average >= 6){
+                                
+                                bannerHomeMisterio.innerHTML += `
+
+                                    <div style="cursor: pointer;" class="bannerMisterio-image">
+                                        <img src="https://image.tmdb.org/t/p/w185${val.poster_path}" />
+                                    </div>
+                                    <div class="bannerMisterio-info">
+                                        <h2 style="font-size:22px;text-align:left;margin-bottom: 8px;">${val.title}</h2>
+                                        <p style="font-size:14px;text-align:left;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
+                                        <p style="font-size:14px;text-align:left;">${val.overview.substring(0,100)}...</p>
+                                    </div>
+
+                                `
+                                filmeIndex++
+
+                            }else{
+                                
+                                return false
+
+                            }
+                            
+                        }
+
+                    })
+
+                })//JSON NOW_PLAYING PÁGINAS
+                
+            })
+
         })
         
         //REQUISIÇÃO DOS FILMES MAIS POPULARES
