@@ -14,7 +14,7 @@
             <header>
                 <div class="container">
                     <div class="logo-header">
-                        <img width="200" src="images/logo-filmendia.png" />
+                        <img alt="Logo Filmendia" width="200" src="images/logo-filmendia.png" />
                     </div>
                     <nav class="menu-desktop">
                         <ul>
@@ -28,13 +28,53 @@
             <div class="container">
 
                 <section class="banner-home">
-                    <!--Adicionando banners dinamicamente-->
-                    <div class="bannerHome-top3">
-                        <h1>TOP FILMES DE MISTÉRIO</h1>
-                        <div class="bannerMisterio-wrapper">
+           
+                    <div class="bannerHome-top3" style="opacity: 1;">
+                        <h1>FILMES DE AÇÃO RECENTES</h1>
+                        <div class="bannerGenre bannerAcao-wrapper">
                             
                         </div>
                     </div>
+
+                    <div class="bannerHome-top3" style="opacity: 0;">
+                        <h1>FILMES DE FANTASIA RECENTES</h1>
+                        <div class="bannerGenre bannerFantasia-wrapper">
+                            
+                        </div>
+                    </div>
+
+                    <div class="bannerHome-top3" style="opacity: 0;">
+                        <h1>FILMES DE MISTÉRIO RECENTES</h1>
+                        <div class="bannerGenre bannerMisterio-wrapper">
+                            
+                        </div>
+                    </div>
+
+                    <div class="bannerHome-top3" style="opacity: 0;">
+                        <h1>FILMES DE ROMANCE RECENTES</h1>
+                        <div class="bannerGenre bannerRomance-wrapper">
+                            
+                        </div>
+                    </div>
+
+                    <div class="bannerHome-top3" style="opacity: 0;">
+                        <h1>FILMES DE ANIMAÇÃO RECENTES</h1>
+                        <div class="bannerGenre bannerAnimacao-wrapper">
+                            
+                        </div>
+                    </div>
+
+                    <div class="bannerHome-top3" style="opacity: 0;">
+                        <h1>FILMES DE TERROR RECENTES</h1>
+                        <div class="bannerGenre bannerTerror-wrapper">
+                            
+                        </div>
+                    </div>
+
+                    <div style="opacity: 0.5" class="bannerHomeSlider-bullets">
+                        
+                    </div>
+
                 </section>
 
                 <section class="preview-wrapper">
@@ -42,22 +82,17 @@
                     <div class="preview-texts previewPopular-texts">
                         <h2>Popular</h2>
                         <div class="preview-texts-nav">
-                            <span style="font-family: initial;" class="preview-arrowLeft setaSpan">&#8249</span>
                             <div class="previewSlider-bullets previewPopular-bullets">
-                                <span style="background-color: gold;"></span>
-                                <span></span>
-                                <span></span>
+                                <span style="background-color: white;cursor:pointer"></span>
+                                <span style="cursor:pointer"></span>
+                                <span style="cursor:pointer"></span>
                             </div>
-                            <span style="font-family: initial;" class="preview-arrowRight setaSpan">&#8250</span>
                         </div>
                         <a href="#">Todos os filmes</a>
                     </div>
 
                     <div class="preview-images previewPopular-images">
                         <!--Adicionando previewImages dinamicamente-->
-                    </div>
-
-                    <div class="preview-info previewPopular-info">
 
                     </div>
 
@@ -68,20 +103,17 @@
                     <div class="preview-texts previewTopRated-texts">
                         <h2>Mais bem avaliados</h2>
                         <div class="preview-texts-nav">
-                            <span style="font-family: initial;" class="preview-arrowLeft setaSpan">&#8249</span>
                             <div class="previewSlider-bullets previewTopRated-bullets">
-                                <span style="background-color: gold;"></span>
-                                <span></span>
-                                <span></span>
+                                <span style="background-color: white;cursor:pointer"></span>
+                                <span style="cursor:pointer"></span>
+                                <span style="cursor:pointer"></span>
                             </div>
-                            <span style="font-family: initial;" class="preview-arrowRight setaSpan">&#8250</span>
                         </div>
                         <a href="#">Todos os filmes</a>
                     </div>
 
                     <div class="preview-images previewTopRated-images">
                         <!--Adicionando previewImages dinamicamente-->
-
 
                     </div>
                         
@@ -90,8 +122,10 @@
             </div><!--container-->
         </main>
 
-        <script src="js/functions.js"></script>
-        <script src="js/clickPreviewArrows.js"></script>
+        <script src="js/validation/initSlider-BannerHome.js"></script>
+        <script src="js/process/clickArrows-BannerHome.js"></script>
+        <script src="js/validation/initSlider-PreviewMovies.js"></script>
+        <script src="js/process/clickArrows-PreviewMovies.js"></script>
     </body>
 
 </html>
