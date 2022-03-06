@@ -24,6 +24,7 @@ nav.menu-desktop a
     text-decoration: none
     color: white
     font-weight: bold
+    font-size: 15px
 
 .container
     margin: 0 auto
@@ -39,6 +40,7 @@ nav.menu-desktop a
     align-items: center
     flex-direction: column
     position: relative
+    border-radius: 8px
 
 .bannerHome-top3
     width: 100%
@@ -53,6 +55,11 @@ nav.menu-desktop a
     display: flex
     align-items: center
     justify-content: center
+
+.bannerGenre div:nth-of-type(2n+1)
+    border-left: 2px solid rgba(255, 215, 0,0.3)
+    border-radius: 8px
+    padding-left: 5px
 
 .bannerHomeSlider-bullets
     display: flex
@@ -72,6 +79,7 @@ nav.menu-desktop a
     background-color: #1E1E1E
     padding: 10px 8px
     margin-bottom: 20px
+    border-radius: 5px
 
 .preview-texts
     display: flex
@@ -127,7 +135,7 @@ nav.menu-desktop a
 .previewScrollBar div
     padding: 0 8px 
 
-@media screen and (max-width: 1140px)
+@media screen and (max-width: 1200px)
     .bannerGenre div:nth-of-type(5),.bannerGenre div:nth-of-type(6)
         display: none
 
@@ -138,9 +146,45 @@ nav.menu-desktop a
     .preview-texts a
         font-size: 16px
 
+@media screen and (max-width: 912px)
+    .bannerHome-top3 h1
+        text-align: center
+
+    .bannerGenre
+        flex-direction: column
+        text-align: center
+
+    .bannerGenre
+        max-width: 400px
+        margin: 0 auto
+
+    .bannerGenre div:nth-of-type(2)
+        margin-bottom: 25px
+
+    .bannerGenre h2
+        margin-top: 5px
+
+    .bannerGenre img
+        width: 250px !important
+
+    .bannerHomeSlider-bullets
+        margin-top: 1110px
+
 @media screen and (max-width: 834px)
     .preview-texts h2
         font-size: 18px
     
     .preview-texts a
         font-size: 14px
+
+@media screen and (max-width: 415px)
+    .bannerHomeSlider-bullets
+        margin-top: 1170px
+
+@media screen and (max-width: 320px)
+    .bannerHomeSlider-bullets
+        margin-top: 1240px
+
+@media screen and (max-width: 280px)
+    .bannerHomeSlider-bullets
+        margin-top: 1260px

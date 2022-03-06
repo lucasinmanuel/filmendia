@@ -65,12 +65,12 @@ function mandarGenresIds(listGenres){
                             bannerHomeAcao.innerHTML += `
                             
                                 <div style="cursor: pointer;">
-                                    <img style="width: 185px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
+                                    <img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
-                                    <h2 style="font-size:20px;text-align:left;margin-bottom: 8px;">${val.title}</h2>
-                                    <p style="font-size:14px;text-align:left;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
-                                    <p style="font-size:14px;text-align:left;">${val.overview.substring(0,100)}...</p>
+                                    <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
+                                    <p style="font-size:14px;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
+                                    <p style="font-size:14px;">${val.overview.substring(0,100)}...</p>
                                 </div>
                             
                             `
@@ -87,12 +87,12 @@ function mandarGenresIds(listGenres){
                             bannerHomeFantasia.innerHTML += `
 
                                 <div style="cursor: pointer;">
-                                    <img style="width: 185px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
+                                    <img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
-                                    <h2 style="font-size:20px;text-align:left;margin-bottom: 8px;">${val.title}</h2>
-                                    <p style="font-size:14px;text-align:left;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
-                                    <p style="font-size:14px;text-align:left;">${val.overview.substring(0,100)}...</p>
+                                    <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
+                                    <p style="font-size:14px;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
+                                    <p style="font-size:14px;">${val.overview.substring(0,100)}...</p>
                                 </div>
 
                             `
@@ -110,12 +110,12 @@ function mandarGenresIds(listGenres){
                             bannerHomeMisterio.innerHTML += `
 
                                 <div style="cursor: pointer;">
-                                    <img style="width: 185px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
+                                    <img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
-                                    <h2 style="font-size:20px;text-align:left;margin-bottom: 8px;">${val.title}</h2>
-                                    <p style="font-size:14px;text-align:left;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
-                                    <p style="font-size:14px;text-align:left;">${val.overview.substring(0,100)}...</p>
+                                    <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
+                                    <p style="font-size:14px;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
+                                    <p style="font-size:14px;">${val.overview.substring(0,100)}...</p>
                                 </div>
 
                             `
@@ -133,12 +133,12 @@ function mandarGenresIds(listGenres){
                             bannerHomeRomance.innerHTML += `
 
                                 <div style="cursor: pointer;">
-                                    <img style="width: 185px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
+                                    <img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
-                                    <h2 style="font-size:20px;text-align:left;margin-bottom: 8px;">${val.title}</h2>
-                                    <p style="font-size:14px;text-align:left;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
-                                    <p style="font-size:14px;text-align:left;">${val.overview.substring(0,100)}...</p>
+                                    <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
+                                    <p style="font-size:14px;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
+                                    <p style="font-size:14px;">${val.overview.substring(0,100)}...</p>
                                 </div>
 
                             `
@@ -155,12 +155,12 @@ function mandarGenresIds(listGenres){
                             bannerHomeAnimacao.innerHTML += `
 
                                 <div style="cursor: pointer;">
-                                    <img style="width: 185px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
+                                    <img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
-                                    <h2 style="font-size:20px;text-align:left;margin-bottom: 8px;">${val.title}</h2>
-                                    <p style="font-size:14px;text-align:left;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
-                                    <p style="font-size:14px;text-align:left;">${val.overview.substring(0,100)}...</p>
+                                    <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
+                                    <p style="font-size:14px;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
+                                    <p style="font-size:14px;">${val.overview.substring(0,100)}...</p>
                                 </div>
 
                             `
@@ -177,12 +177,12 @@ function mandarGenresIds(listGenres){
                             bannerHomeTerror.innerHTML += `
 
                                 <div style="cursor: pointer;">
-                                    <img style="width: 185px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
+                                    <img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
-                                    <h2 style="font-size:20px;text-align:left;margin-bottom: 8px;">${val.title}</h2>
-                                    <p style="font-size:14px;text-align:left;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
-                                    <p style="font-size:14px;text-align:left;">${val.overview.substring(0,100)}...</p>
+                                    <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
+                                    <p style="font-size:14px;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
+                                    <p style="font-size:14px;">${val.overview.substring(0,100)}...</p>
                                 </div>
 
                             `
