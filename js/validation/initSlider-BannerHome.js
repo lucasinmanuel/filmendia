@@ -64,8 +64,8 @@ function mandarGenresIds(listGenres){
 
                             bannerHomeAcao.innerHTML += `
                             
-                                <div style="cursor: pointer;">
-                                    <img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
+                                <div>
+                                    <a href="${val.id}"><img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" /></a>
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
                                     <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
@@ -86,8 +86,8 @@ function mandarGenresIds(listGenres){
 
                             bannerHomeFantasia.innerHTML += `
 
-                                <div style="cursor: pointer;">
-                                    <img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
+                                <div>
+                                    <a href="${val.id}"><img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" /></a>
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
                                     <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
@@ -109,8 +109,8 @@ function mandarGenresIds(listGenres){
                   
                             bannerHomeMisterio.innerHTML += `
 
-                                <div style="cursor: pointer;">
-                                    <img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
+                                <div>
+                                    <a href="${val.id}"><img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" /></a>
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
                                     <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
@@ -132,8 +132,8 @@ function mandarGenresIds(listGenres){
                   
                             bannerHomeRomance.innerHTML += `
 
-                                <div style="cursor: pointer;">
-                                    <img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
+                                <div>
+                                    <a href="${val.id}"><img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" /></a>
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
                                     <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
@@ -154,8 +154,8 @@ function mandarGenresIds(listGenres){
 
                             bannerHomeAnimacao.innerHTML += `
 
-                                <div style="cursor: pointer;">
-                                    <img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
+                                <div>
+                                    <a href="${val.id}"><img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" /></a>
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
                                     <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
@@ -176,8 +176,8 @@ function mandarGenresIds(listGenres){
 
                             bannerHomeTerror.innerHTML += `
 
-                                <div style="cursor: pointer;">
-                                    <img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
+                                <div>
+                                    <a href="${val.id}"><img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" /></a>
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
                                     <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
