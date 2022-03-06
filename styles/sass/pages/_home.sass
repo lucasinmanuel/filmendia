@@ -70,8 +70,7 @@ nav.menu-desktop a
 .preview-wrapper
     width: 100%
     background-color: #1E1E1E
-    padding: 10px 0
-    overflow-x: hidden
+    padding: 10px 8px
     margin-bottom: 20px
 
 .preview-texts
@@ -80,6 +79,7 @@ nav.menu-desktop a
     justify-content: space-between
     margin-top: 2px
     margin-bottom: 10px
+    padding: 0 8px
 
 .preview-texts h2
     font-size: 26px
@@ -114,37 +114,29 @@ nav.menu-desktop a
     width: 30%
     text-align: right
 
-.previewImages-wrapper
-    display: flex
-    flex-direction: column
-
 .preview-images
+    width: 100%
+    overflow-x: hidden
+
+.previewScrollBar
+    width: 300%
     display: flex
     align-items: center
     transition: 0.3s
 
-.preview-single img
-    cursor: pointer
+.previewScrollBar div
+    padding: 0 8px 
 
 @media screen and (max-width: 1140px)
     .bannerGenre div:nth-of-type(5),.bannerGenre div:nth-of-type(6)
         display: none
 
 @media screen and (max-width: 1024px)
-    .preview-wrapper
-        padding: 10px 15px
-
-    .preview-single
-        padding-right: 17px
-
     .preview-texts h2
         font-size: 22px
 
     .preview-texts a
         font-size: 16px
-
-    .preview-single img
-        width: 200px
 
 @media screen and (max-width: 834px)
     .preview-texts h2
@@ -152,10 +144,3 @@ nav.menu-desktop a
     
     .preview-texts a
         font-size: 14px
-
-    .preview-single img
-        width: 238px
-
-@media screen and (max-width: 768px)
-    .preview-single img
-        width: 210px
