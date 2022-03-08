@@ -65,7 +65,7 @@ function mandarGenresIds(listGenres){
                             bannerHomeAcao.innerHTML += `
                             
                                 <div>
-                                    <a href="${val.id}"><img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" /></a>
+                                    <img id="${val.id}" class="filmeBannerHome" style="width: 185px;border-radius:8px;cursor:pointer;" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
                                     <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
@@ -87,7 +87,7 @@ function mandarGenresIds(listGenres){
                             bannerHomeFantasia.innerHTML += `
 
                                 <div>
-                                    <a href="${val.id}"><img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" /></a>
+                                    <img id="${val.id}" class="filmeBannerHome" style="width: 185px;border-radius:8px;cursor:pointer;" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
                                     <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
@@ -110,7 +110,7 @@ function mandarGenresIds(listGenres){
                             bannerHomeMisterio.innerHTML += `
 
                                 <div>
-                                    <a href="${val.id}"><img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" /></a>
+                                    <img id="${val.id}" class="filmeBannerHome" style="width: 185px;border-radius:8px;cursor:pointer;" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
                                     <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
@@ -133,7 +133,7 @@ function mandarGenresIds(listGenres){
                             bannerHomeRomance.innerHTML += `
 
                                 <div>
-                                    <a href="${val.id}"><img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" /></a>
+                                    <img id="${val.id}" class="filmeBannerHome" style="width: 185px;border-radius:8px;cursor:pointer;" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
                                     <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
@@ -155,7 +155,7 @@ function mandarGenresIds(listGenres){
                             bannerHomeAnimacao.innerHTML += `
 
                                 <div>
-                                    <a href="${val.id}"><img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" /></a>
+                                    <img id="${val.id}" class="filmeBannerHome" style="width: 185px;border-radius:8px;cursor:pointer;" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
                                     <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
@@ -177,7 +177,7 @@ function mandarGenresIds(listGenres){
                             bannerHomeTerror.innerHTML += `
 
                                 <div>
-                                    <a href="${val.id}"><img style="width: 185px;border-radius:8px" src="https://image.tmdb.org/t/p/w400${val.poster_path}" /></a>
+                                    <img id="${val.id}" class="filmeBannerHome" style="width: 185px;border-radius:8px;cursor:pointer;" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
                                     <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
@@ -194,9 +194,19 @@ function mandarGenresIds(listGenres){
 
                 })
 
-            })//JSON NOW_PLAYING PÁGINAS
+            })//JSON FOREACH NOW_PLAYING PÁGINAS
             
-        })
+            //ENVIA O ID DOS FILMES DO BANNER HOME VIA URL PARA UTILIZAR NA PÁGINA filme-id.html
+            var filmePopular = document.querySelectorAll('.filmeBannerHome')
+            filmePopular.forEach((value,index)=>{
+                
+                filmePopular[index].addEventListener('click',()=>{
+                    window.location = 'filmes/filme-id.html?'+value.id
+                })
+
+            })
+
+        })//THEN JSON
 
     })
     

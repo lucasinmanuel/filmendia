@@ -245,6 +245,23 @@ nav.menu-desktop a {
   padding: 0 8px;
 }
 
+.templateFilme-wrapper {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.templateFilme-images {
+  width: 30%;
+  background-color: green;
+}
+
+.templateFilme-infos {
+  width: 70%;
+  background-color: red;
+}
+
 @media screen and (max-width: 1200px) {
   .bannerGenre div:nth-of-type(5), .bannerGenre div:nth-of-type(6) {
     display: none;

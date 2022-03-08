@@ -1,6 +1,7 @@
 var bannerHomeTop3 = document.querySelectorAll('.bannerHome-top3')
 const bannerHomeSliderBullets = document.querySelector('.bannerHomeSlider-bullets')
 
+//QUANTIDADE D BULLETS NO BANNER HOME
 for(let i = 0;i < bannerHomeTop3.length - 1;i++){
     
     if(i === 0){
@@ -19,11 +20,13 @@ bannerHomeTop3.forEach((value,index)=>{
         for(let i = 0;i < bannerHomeTop3.length;i++){
 
             bannerHomeTop3[i].style.opacity = '0'
+            bannerHomeTop3[i].style.zIndex = '15'
             qtdSpanBullets[i].style.backgroundColor = 'rgba(250,250,250,0.3)'
 
         }
 
         bannerHomeTop3[index].style.opacity = '1'
+        bannerHomeTop3[index].style.zIndex = '20'
         qtdSpanBullets[index].style.backgroundColor = 'rgb(250,250,250)'
 
     })
