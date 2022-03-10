@@ -196,12 +196,12 @@ function mandarGenresIds(listGenres){
 
             })//JSON FOREACH NOW_PLAYING PÁGINAS
             
-            //ENVIA O ID DOS FILMES DO BANNER HOME VIA URL PARA UTILIZAR NA PÁGINA filme-id.html
+            //ENVIA O ID DOS FILMES DO BANNER HOME VIA URL PARA UTILIZAR NA PÁGINA filmes/filme.html
             var filmePopular = document.querySelectorAll('.filmeBannerHome')
             filmePopular.forEach((value,index)=>{
                 
                 filmePopular[index].addEventListener('click',()=>{
-                    window.location = 'filmes/filme-id.html?'+value.id
+                    window.location = 'filmes/filme.html?id='+value.id
                 })
 
             })

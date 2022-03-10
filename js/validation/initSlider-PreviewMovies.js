@@ -71,12 +71,12 @@ fetch('https://api.themoviedb.org/3/movie/popular?api_key=d9006a76b9606894cb5d01
 
     }
     
-    //ENVIA O ID DOS FILMES POPULARES VIA URL PARA UTILIZAR NA PÁGINA filme-id.html
+    //ENVIA O ID DOS FILMES POPULARES VIA URL PARA UTILIZAR NA PÁGINA filmes/filme.html
     var filmePopular = document.querySelectorAll('.filmePopular')
     filmePopular.forEach((value,index)=>{
         
         filmePopular[index].addEventListener('click',()=>{
-            window.location = 'filmes/filme-id.html?'+value.id
+            window.location = 'filmes/filme.html?id='+value.id
         })
 
     })
@@ -162,12 +162,12 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=d9006a76b9606894cb5d
 
     }
 
-    //ENVIA O ID DOS FILMES MAIS BEM AVALIADOS VIA URL PARA UTILIZAR NA PÁGINA filme-id.html
+    //ENVIA O ID DOS FILMES MAIS BEM AVALIADOS VIA URL PARA UTILIZAR NA PÁGINA filmes/filme.html
     var filmeTopRated = document.querySelectorAll('.filmeTopRated')
     filmeTopRated.forEach((value,index)=>{
     
         filmeTopRated[index].addEventListener('click',()=>{
-            window.location = 'filmes/filme-id.html?'+value.id
+            window.location = 'filmes/filme.html?id='+value.id
         })
     
     })
