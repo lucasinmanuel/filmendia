@@ -61,10 +61,10 @@ fetch(`https://api.themoviedb.org/3/movie/${urlFilmeId}/videos?api_key=d9006a76b
     
             templateTrailerFilme.innerHTML += `
         
-                <h2 style="font-size:24px;margin-bottom:5px;margin-top:10px;">${value.name}</h2>
+                <h2 style="font-size:24px;margin-bottom:8px;margin-top:10px;">${value.name}</h2>
                 <iframe style="margin-bottom: 15px;" width="560" height="315" src="https://www.youtube.com/embed/${value.key}" 
                 title="YouTube video player" frameborder="1" allowfullscreen><p>Your browser does not support iframes.</p></iframe>
-                <div style="width: 60%;height: 2px;background-color:rgba(255, 215, 0,0.2);border-radius:10px;"></div> 
+                <div style="width: 60%;height: 2px;background-color:rgba(255, 215, 0,0.2);border-radius:10px;margin-bottom:20px;"></div> 
 
             `
 
@@ -74,7 +74,7 @@ fetch(`https://api.themoviedb.org/3/movie/${urlFilmeId}/videos?api_key=d9006a76b
 
         templateTrailerFilme.innerHTML += `
         
-            <div style="margin-bottom: 15px;width:560px;height:315px;background-color:#a0a0a0;
+            <div style="margin-top:10px;margin-bottom: 20px;width:560px;height:315px;background-color:#a0a0a0;
             text-align:center;line-height:315px;color:#dbdbdb;user-select:none;opacity:0.8;"><p>Não possui nenhum trailer :(</p></div>
 
         `

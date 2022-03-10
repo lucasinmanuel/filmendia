@@ -282,7 +282,6 @@ nav.menu-desktop a {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 10px 0;
 }
 
 @media screen and (max-width: 1200px) {
