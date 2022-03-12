@@ -54,14 +54,14 @@ fetch(`https://api.themoviedb.org/3/movie/${urlFilmeId}/videos?api_key=d9006a76b
 .then(response=>response.json())
 .then((jsonTrailerFilme)=>{
 
-    const templateTrailerFilme = document.querySelector('.TemplateFilmeVideo-wrapper')
+    const templateTrailerFilme = document.querySelector('.templateFilmeVideo-wrapper')
     if(jsonTrailerFilme.results.length != 0){
 
         jsonTrailerFilme.results.forEach((value) => {
     
             templateTrailerFilme.innerHTML += `
         
-                <div class="TemplateFilmeVideo-single" style="width:50%;margin-bottom: 10px;border: 8px solid black;">
+                <div class="templateFilmeVideo-single" style="width:50%;margin-top:15px;margin-bottom: 15px;border: 8px solid black;">
                     <h2 style="font-size:22px;margin-bottom:8px;">${value.name.substring(0,45)}</h2>
                     <iframe style="margin-bottom: 15px;" width="100%" height="315" src="https://www.youtube.com/embed/${value.key}" 
                     title="YouTube video player" frameborder="1" allowfullscreen><p>Your browser does not support iframes.</p></iframe>
@@ -76,7 +76,7 @@ fetch(`https://api.themoviedb.org/3/movie/${urlFilmeId}/videos?api_key=d9006a76b
 
         templateTrailerFilme.innerHTML += `
 
-            <div class="TemplateFilmeVideo-single" style="margin-top:10px;margin-bottom: 20px">
+            <div class="templateFilmeVideo-single" style="margin-top:25px;margin-bottom: 25px">
                 <div style="width:560px;height:315px;background-color:#a0a0a0;
                 text-align:center;line-height:315px;color:#dbdbdb;user-select:none;opacity:0.8;"><p>Não possui nenhum trailer :(</p></div>
             </div>
@@ -85,4 +85,87 @@ fetch(`https://api.themoviedb.org/3/movie/${urlFilmeId}/videos?api_key=d9006a76b
 
     }
     
+})
+
+fetch(`https://api.themoviedb.org/3/movie/${urlFilmeId}/similar?api_key=d9006a76b9606894cb5d01eda1af5904&language=pt-br`, {
+    method: 'GET'
+})
+.then(response=>response.json())
+.then((jsonFilmeSimilar)=>{
+
+    const templateSimilar = document.querySelector('.templateFilmeSimilares-images')
+    if(window.innerWidth > 1112){
+
+        jsonFilmeSimilar.results.slice(0,6).map((val)=>{
+
+        templateSimilar.innerHTML += `
+        
+            <div class="preview-single">
+                <img id="${val.id}" class="filmeSimilar" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
+            </div>
+            
+        `
+
+    })
+
+    }else if(window.innerWidth > 1024){
+
+        jsonFilmeSimilar.results.slice(0,5).map((val)=>{
+            templateSimilar.innerHTML += `
+        
+                <div class="preview-single">
+                    <img id="${val.id}" class="filmeSimilar" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
+                </div>
+            
+            `
+        })
+
+    }else if (window.innerWidth > 812){
+
+        jsonFilmeSimilar.results.slice(0,4).map((val)=>{
+            templateSimilar.innerHTML += `
+        
+                <div class="preview-single">
+                    <img id="${val.id}" class="filmeSimilar" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
+                </div>
+            
+            `
+        })
+
+    }else if(window.innerWidth > 736){
+
+        jsonFilmeSimilar.results.slice(0,3).map((val)=>{
+            templateSimilar.innerHTML += `
+        
+                <div class="preview-single">
+                    <img id="${val.id}" class="filmeSimilar" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
+                </div>
+            
+            `
+        })
+
+    }else{
+
+        jsonFilmeSimilar.results.slice(0,2).map((val)=>{
+            templateSimilar.innerHTML += `
+        
+                <div class="preview-single">
+                    <img id="${val.id}" class="filmeSimilar" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
+                </div>
+            
+            `
+        })
+
+    }
+
+    //ENVIA O ID DOS FILMES MAIS BEM AVALIADOS VIA URL PARA UTILIZAR NA PÁGINA filmes/filme.html
+    var filmeSimilar = document.querySelectorAll('.filmeSimilar')
+    filmeSimilar.forEach((value,index)=>{
+    
+        filmeSimilar[index].addEventListener('click',()=>{
+            window.location = 'filme.html?id='+value.id
+        })
+    
+    })
+
 })
