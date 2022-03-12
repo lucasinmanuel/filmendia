@@ -4,7 +4,7 @@ fetch('https://api.themoviedb.org/3/movie/popular?api_key=d9006a76b9606894cb5d01
 })
 .then(response => response.json())
 .then((jsonPopular)=>{
-    console.log(jsonPopular)
+    
     const previewPopularImages = document.querySelector('.previewPopular-images')
 
     if(window.innerWidth > 1112){
