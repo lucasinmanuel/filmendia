@@ -326,7 +326,7 @@ nav.menu-desktop a {
   width: 100%;
 }
 
-.mudarPagina {
+.mudarPaginaPopular {
   width: 350px;
   height: 35px;
   display: -webkit-box;
@@ -349,7 +349,50 @@ nav.menu-desktop a {
   border-radius: 50px;
 }
 
-.mudarPagina p {
+.mudarPaginaPopular p {
+  margin: 0 10px;
+}
+
+.filmesTopRated-todos h1 {
+  margin: 20px 0;
+}
+
+.filmesTopRated-images {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
+.mudarPaginaTopRated {
+  width: 350px;
+  height: 35px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: flex;
+  align-items: center;
+  margin: 10px auto 20px auto;
+  background-color: rgba(255, 215, 0, 0.3);
+  border-radius: 50px;
+}
+
+.mudarPaginaTopRated p {
   margin: 0 10px;
 }
 
