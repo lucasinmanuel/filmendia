@@ -1,18 +1,4 @@
-var numPage = 1
-mudarPagina(numPage)
-
-const filmesPopularesArrows = document.querySelectorAll('.mudarPagina span')
-filmesPopularesArrows[0].addEventListener('click',()=>{
-    numPage--
-    if(numPage < 1){
-        numPage = 1
-    }
-    mudarPagina(numPage)
-})
-filmesPopularesArrows[1].addEventListener('click',()=>{
-    numPage++
-    mudarPagina(numPage)
-})
+mudarPagina(1)
 
 function mudarPagina(numPage){
 
@@ -57,7 +43,13 @@ function mudarPagina(numPage){
                     }
 
                 });
+                //FORMATANDO DATA AMERICANA PARA BRASILEIRA
+                var dataAmericanaSplit = val.release_date.split('-')
+                var dataDia = dataAmericanaSplit[2]
+                var dataMes = dataAmericanaSplit[1]
+                var dataAno = dataAmericanaSplit[0]
 
+                //ADCIONANDO RETICÊNCIAS A SINOPSE E TITULO
                 var qtdCaractSinopse = false
                 var qtdCaractTitle = false
                 if(val.overview.length > 90){
@@ -74,7 +66,7 @@ function mudarPagina(numPage){
                         </div>
                         <div style="width:55%;padding: 0 10px;">
                             <h2 style="font-size:17px;margin-bottom:5px;">${qtdCaractTitle?val.title.substring(0,15)+'...':val.title}</h2>
-                            <p style="font-size:14px;"><b style="color:#c1c1c1;">Data de lançamento: </b>${val.release_date.replace(/-/g,'/')}</p>
+                            <p style="font-size:14px;"><b style="color:#c1c1c1;">Data de lançamento: </b>${dataDia+'/'+dataMes+'/'+dataAno}</p>
                             <p style="font-size:14px;"><b style="color:#c1c1c1;">Avalição: </b>${val.vote_average}</p>
                             <p style="font-size:14px;"><b style="color:#c1c1c1;">Gênero: </b>${generos.map((value)=>{
                                 return " "+value
@@ -88,20 +80,74 @@ function mudarPagina(numPage){
 
             })
 
-            var filmesPopulares = document.querySelectorAll('.filmePopular')
-            filmesPopulares.forEach((value,index)=>{
+            //ADICIONA O ID DO FILME A URL
+            var filmesPopularesImages = document.querySelectorAll('.filmePopular')
+            filmesPopularesImages.forEach((value,index)=>{
 
-                filmesPopulares[index].addEventListener('click',()=>{
+                filmesPopularesImages[index].addEventListener('click',()=>{
                     window.location = 'filme.html?id='+value.id
                 })
 
             })
 
-            //MOSTRA A MUDANÇA DE PÁGINA
-            const filmesPopularesPage = document.querySelector('.mudarPagina p')
-            filmesPopularesPage.innerHTML = jsonPopular.page
+            //MOSTRA A MUDANÇA DE PÁGINA VOLTAR
+            var voltarPageUm = false
+            var voltarPageDois = false
+            var voltarPageDez = false
+            if(jsonPopular.page > 1){
+                voltarPageUm = true
+            }
+            if(jsonPopular.page > 2){
+                voltarPageDois = true
+            }
+            if(jsonPopular.page > 10){
+                voltarPageDez = true
+            }
+            //MOSTRA A MUDANÇA DE PÁGINA AVANÇAR
+            const filmesPopularesPage = document.querySelector('.mudarPagina')
+            filmesPopularesPage.innerHTML = `
 
-        })
+                <p class="pagPopular backDez" style="cursor:pointer;opacity:0.6;">${voltarPageDez?jsonPopular.page - 10:'*'}...</p>
+                <p class="pagPopular" style="cursor:pointer;opacity:0.6;">${voltarPageDois?jsonPopular.page - 2:'*'}</p>
+                <p class="pagPopular" style="cursor:pointer;opacity:0.6;">${voltarPageUm?jsonPopular.page - 1:'*'}</p>
+                <p class="pagPopular" style="border-bottom:2px solid gold;cursor:pointer;margin-top:2px;">${jsonPopular.page}</p>
+                <p class="pagPopular" style="cursor:pointer;">${jsonPopular.page + 1}</p>
+                <p class="pagPopular" style="cursor:pointer;">${jsonPopular.page + 2}</p>
+                <p class="pagPopular skipDez" style="cursor:pointer;">...${jsonPopular.page + 10}</p>
+                
+            `
+
+            //CLICK NOS NUMEROS DAS PÁGINAS
+            const clickNumPage = document.querySelectorAll('.pagPopular')
+            clickNumPage.forEach((valueNumPage,index)=>{
+
+                clickNumPage[index].addEventListener('click',()=>{
+
+                    if(valueNumPage.classList.value === 'pagPopular skipDez'){
+
+                        //AVANÇAR DEZ PÁGINAS
+                        let numPage = valueNumPage.innerHTML.substring(3)
+                        mudarPagina(numPage)
+
+                    }else if(valueNumPage.classList.value === 'pagPopular backDez'){
+
+                        //VOLTAR DE DEZ PÁGINAS
+                        let numPage = valueNumPage.innerHTML.substring(0,2)
+                        mudarPagina(numPage)
+
+                    }else{
+
+                        //AVANÇAR UMA PÁGINA
+                        let numPage = valueNumPage.innerHTML
+                        mudarPagina(numPage)
+
+                    }
+                    
+                })
+
+            })
+
+        })//JSON FETCH
 
     }
 

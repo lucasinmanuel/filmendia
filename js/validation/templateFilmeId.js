@@ -15,14 +15,26 @@ fetch(`https://api.themoviedb.org/3/movie/${urlFilmeId}?api_key=d9006a76b9606894
         <img style="width:100%;" src="https://image.tmdb.org/t/p/w400${jsonFilmeId.poster_path}" />
 
     `
+    //FORMATANDO DATA AMERICANA PARA BRASILEIRA
+    var dataAmericanaSplit = jsonFilmeId.release_date.split('-')
+    var dataDia = dataAmericanaSplit[2]
+    var dataMes = dataAmericanaSplit[1]
+    var dataAno = dataAmericanaSplit[0]
+
+    //TRADUÇÃO DE STATUS DO FILME RELEASED/PLANNED
+    if(jsonFilmeId.status === 'Released'){
+        var filmeStatus = 'Liberado'
+    }else{
+        var filmeStatus = 'Planejado'
+    }            
     const templateInfo = document.querySelector('.templateFilme-infos')
     templateInfo.innerHTML = `
     
         <h1 style="color: gold;font-size:32px;margin-bottom: 8px;">${jsonFilmeId.title}</h1>
         <p><b style="color:#c1c1c1;">Título original: </b>${jsonFilmeId.original_title}</p>
         <p><b style="color:#c1c1c1;">Língua original: </b>${jsonFilmeId.original_language}</p>
-        <p><b style="color:#c1c1c1;">Status: </b>${jsonFilmeId.status}</p>
-        <p><b style="color:#c1c1c1;">Data de lançamento: </b>${jsonFilmeId.release_date.replace(/-/g,'/')}</p>
+        <p><b style="color:#c1c1c1;">Status: </b>${filmeStatus}</p>
+        <p><b style="color:#c1c1c1;">Data de lançamento: </b>${dataDia+'/'+dataMes+'/'+dataAno}</p>
         <p><b style="color:#c1c1c1">Avalição: </b>${jsonFilmeId.vote_average}<p/>
         <p><b style="color:#c1c1c1">Gênero: </b>${jsonFilmeId.genres.map((value)=>{
             return " "+value.name
