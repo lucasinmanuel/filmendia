@@ -11,15 +11,15 @@ fetch('https://api.themoviedb.org/3/movie/popular?api_key=d9006a76b9606894cb5d01
 
         jsonPopular.results.slice(0,18).map((val)=>{
 
-        previewPopularImages.innerHTML += `
+            previewPopularImages.innerHTML += `
         
-            <div class="preview-single">
-                <img alt="${val.title}" id="${val.id}" class="filmePopular" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
-            </div>
+                <div class="preview-single">
+                    <img alt="${val.title}" id="${val.id}" class="filmePreviewPopular" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
+                </div>
             
-        `
+            `
 
-    })
+        })
 
     }else if(window.innerWidth > 1024){
 
@@ -27,7 +27,7 @@ fetch('https://api.themoviedb.org/3/movie/popular?api_key=d9006a76b9606894cb5d01
             previewPopularImages.innerHTML += `
         
                 <div class="preview-single">
-                    <img alt="${val.title}" id="${val.id}" class="filmePopular" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
+                    <img alt="${val.title}" id="${val.id}" class="filmePreviewPopular" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
                 </div>
             
             `
@@ -39,7 +39,7 @@ fetch('https://api.themoviedb.org/3/movie/popular?api_key=d9006a76b9606894cb5d01
             previewPopularImages.innerHTML += `
         
                 <div class="preview-single">
-                    <img alt="${val.title}" id="${val.id}" class="filmePopular" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
+                    <img alt="${val.title}" id="${val.id}" class="filmePreviewPopular" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
                 </div>
             
             `
@@ -51,7 +51,7 @@ fetch('https://api.themoviedb.org/3/movie/popular?api_key=d9006a76b9606894cb5d01
             previewPopularImages.innerHTML += `
         
                 <div class="preview-single">
-                    <img alt="${val.title}" id="${val.id}" class="filmePopular" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
+                    <img alt="${val.title}" id="${val.id}" class="filmePreviewPopular" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
                 </div>
             
             `
@@ -63,7 +63,7 @@ fetch('https://api.themoviedb.org/3/movie/popular?api_key=d9006a76b9606894cb5d01
             previewPopularImages.innerHTML += `
         
                 <div class="preview-single">
-                    <img alt="${val.title}" id="${val.id}" class="filmePopular" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
+                    <img alt="${val.title}" id="${val.id}" class="filmePreviewPopular" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
                 </div>
             
             `
@@ -72,7 +72,7 @@ fetch('https://api.themoviedb.org/3/movie/popular?api_key=d9006a76b9606894cb5d01
     }
     
     //ENVIA O ID DOS FILMES POPULARES VIA URL PARA UTILIZAR NA PÁGINA filmes/filme.html
-    var filmePopular = document.querySelectorAll('.filmePopular')
+    var filmePopular = document.querySelectorAll('.filmePreviewPopular')
     filmePopular.forEach((value,index)=>{
         
         filmePopular[index].addEventListener('click',()=>{
@@ -98,7 +98,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=d9006a76b9606894cb5d
             previewTopRatedImages.innerHTML += `
 
                 <div class="preview-single">
-                    <img alt="${val.title}" id="${val.id}" class="filmeTopRated" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
+                    <img alt="${val.title}" id="${val.id}" class="filmePreviewTopRated" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
                 </div>
             
             `
@@ -111,7 +111,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=d9006a76b9606894cb5d
             previewTopRatedImages.innerHTML += `
             
                 <div class="preview-single">
-                    <img alt="${val.title}" id="${val.id}" class="filmeTopRated" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
+                    <img alt="${val.title}" id="${val.id}" class="filmePreviewTopRated" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
                 </div>
             
             `
@@ -125,7 +125,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=d9006a76b9606894cb5d
             previewTopRatedImages.innerHTML += `
             
                 <div class="preview-single">
-                    <img alt="${val.title}" id="${val.id}" class="filmeTopRated" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
+                    <img alt="${val.title}" id="${val.id}" class="filmePreviewTopRated" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
                 </div>
             
             `
@@ -139,7 +139,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=d9006a76b9606894cb5d
             previewTopRatedImages.innerHTML += `
             
                 <div class="preview-single">
-                    <img alt="${val.title}" id="${val.id}" class="filmeTopRated" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
+                    <img alt="${val.title}" id="${val.id}" class="filmePreviewTopRated" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
                 </div>
             
             `
@@ -153,7 +153,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=d9006a76b9606894cb5d
             previewTopRatedImages.innerHTML += `
             
                 <div class="preview-single">
-                    <img alt="${val.title}" id="${val.id}" class="filmeTopRated" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
+                    <img alt="${val.title}" id="${val.id}" class="filmePreviewTopRated" style="width: 100%;cursor:pointer;" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
                 </div>
             
             `
@@ -163,7 +163,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=d9006a76b9606894cb5d
     }
 
     //ENVIA O ID DOS FILMES MAIS BEM AVALIADOS VIA URL PARA UTILIZAR NA PÁGINA filmes/filme.html
-    var filmeTopRated = document.querySelectorAll('.filmeTopRated')
+    var filmeTopRated = document.querySelectorAll('.filmePreviewTopRated')
     filmeTopRated.forEach((value,index)=>{
     
         filmeTopRated[index].addEventListener('click',()=>{

@@ -266,7 +266,6 @@ nav.menu-desktop a {
 
 .templateFilme-distrib {
   width: calc(22% - 15px);
-  height: 470px;
   margin-left: 15px;
   padding: 8px 10px 0 10px;
   background-color: rgba(255, 215, 0, 0.3);
@@ -311,10 +310,48 @@ nav.menu-desktop a {
   padding: 0 8px;
 }
 
+.filmesPopulares-todos h1 {
+  margin: 20px 0;
+}
+
+.filmesPopulares-images {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
 .mudarPagina {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.mudarPagina span {
+  cursor: pointer;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  margin: 10px;
+  font-family: sans-serif;
+  font-weight: bold;
 }
 
 footer {

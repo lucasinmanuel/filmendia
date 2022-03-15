@@ -8,6 +8,7 @@ fetch(`https://api.themoviedb.org/3/movie/${urlFilmeId}?api_key=d9006a76b9606894
 .then(response=>response.json())
 .then((jsonFilmeId)=>{
 
+    document.title = jsonFilmeId.title+' - Filmendia'
     const templateImg = document.querySelector('.templateFilme-images')
     templateImg.innerHTML = `
     
@@ -18,14 +19,15 @@ fetch(`https://api.themoviedb.org/3/movie/${urlFilmeId}?api_key=d9006a76b9606894
     templateInfo.innerHTML = `
     
         <h1 style="color: gold;font-size:32px;margin-bottom: 8px;">${jsonFilmeId.title}</h1>
-        <p><b style="color: #c1c1c1;">Título original: </b>${jsonFilmeId.original_title}</p>
-        <p><b style="color: #c1c1c1;">Língua original: </b>${jsonFilmeId.original_language}</p>
-        <p><b style="color: #c1c1c1;">Data de lançamento: </b>${jsonFilmeId.release_date.replace(/-/g,'/')}</p>
-        <p><b style="color: #c1c1c1">Avalição: </b>${jsonFilmeId.vote_average}<p/>
-        <p><b style="color: #c1c1c1">Gênero: </b>${jsonFilmeId.genres.map((value)=>{
+        <p><b style="color:#c1c1c1;">Título original: </b>${jsonFilmeId.original_title}</p>
+        <p><b style="color:#c1c1c1;">Língua original: </b>${jsonFilmeId.original_language}</p>
+        <p><b style="color:#c1c1c1;">Status: </b>${jsonFilmeId.status}</p>
+        <p><b style="color:#c1c1c1;">Data de lançamento: </b>${jsonFilmeId.release_date.replace(/-/g,'/')}</p>
+        <p><b style="color:#c1c1c1">Avalição: </b>${jsonFilmeId.vote_average}<p/>
+        <p><b style="color:#c1c1c1">Gênero: </b>${jsonFilmeId.genres.map((value)=>{
             return " "+value.name
         })}</p>
-        <p><b style="color: #c1c1c1">Duração: </b>${jsonFilmeId.runtime+"min"}</p>
+        <p><b style="color:#c1c1c1">Duração: </b>${jsonFilmeId.runtime+"min"}</p>
         <h2 style="font-size:24px;text-transform:uppercase;margin: 8px 0;">SINOPSE</h2>
         <p>${jsonFilmeId.overview}</p>
     
@@ -34,7 +36,7 @@ fetch(`https://api.themoviedb.org/3/movie/${urlFilmeId}?api_key=d9006a76b9606894
     const templateDistrib = document.querySelector('.templateFilme-distrib')
     templateDistrib.innerHTML = `
     
-        <h2 style="font-size:16px;color: #c1c1c1;margin-bottom: 5px;">Distribuição:</h2>
+        <h2 style="font-size:16px;color:#c1c1c1;margin-bottom: 5px;">Distribuição:</h2>
         <p>${jsonFilmeId.production_companies.map((value)=>{
             return value.name+", "+value.origin_country+"<br />"
         }).join('')}</p>

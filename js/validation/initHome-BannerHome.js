@@ -55,6 +55,11 @@ function mandarGenresIds(listGenres){
                 const bannerHomeAnimacao = document.querySelector('.bannerAnimacao-wrapper')
                 const bannerHomeTerror = document.querySelector('.bannerTerror-wrapper')
 
+                //VALIDAÇÃO PARA ADCIONAR RETICÊNCIAS NOS TÍTULOS DOS FILMES LONGOS
+                var qtdCaract = false
+                if(val.title.length > 30){
+                    qtdCaract = true
+                }
                 generos.forEach((value)=>{
 
                     //VALIDAÇÃO PARA PEGAR TRÊS FILMES DE AÇÃO
@@ -68,7 +73,7 @@ function mandarGenresIds(listGenres){
                                     <img alt="${val.title}" id="${val.id}" class="filmeBannerHome" style="width: 185px;border-radius:8px;cursor:pointer;" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
-                                    <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
+                                    <h2 style="font-size:20px;margin-bottom: 8px;">${qtdCaract?val.title.substring(0,30)+'...':val.title.substring(0,30)}</h2>
                                     <p style="font-size:14px;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
                                     <p style="font-size:14px;">${val.overview.substring(0,100)}...</p>
                                 </div>
@@ -90,7 +95,7 @@ function mandarGenresIds(listGenres){
                                     <img alt="${val.title}" id="${val.id}" class="filmeBannerHome" style="width: 185px;border-radius:8px;cursor:pointer;" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
-                                    <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
+                                    <h2 style="font-size:20px;margin-bottom: 8px;">${qtdCaract?val.title.substring(0,30)+'...':val.title.substring(0,30)}</h2>
                                     <p style="font-size:14px;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
                                     <p style="font-size:14px;">${val.overview.substring(0,100)}...</p>
                                 </div>
@@ -113,7 +118,7 @@ function mandarGenresIds(listGenres){
                                     <img alt="${val.title}" id="${val.id}" class="filmeBannerHome" style="width: 185px;border-radius:8px;cursor:pointer;" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
-                                    <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
+                                    <h2 style="font-size:20px;margin-bottom: 8px;">${qtdCaract?val.title.substring(0,30)+'...':val.title.substring(0,30)}</h2>
                                     <p style="font-size:14px;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
                                     <p style="font-size:14px;">${val.overview.substring(0,100)}...</p>
                                 </div>
@@ -136,7 +141,7 @@ function mandarGenresIds(listGenres){
                                     <img alt="${val.title}" id="${val.id}" class="filmeBannerHome" style="width: 185px;border-radius:8px;cursor:pointer;" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
-                                    <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
+                                    <h2 style="font-size:20px;margin-bottom: 8px;">${qtdCaract?val.title.substring(0,30)+'...':val.title.substring(0,30)}</h2>
                                     <p style="font-size:14px;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
                                     <p style="font-size:14px;">${val.overview.substring(0,100)}...</p>
                                 </div>
@@ -158,7 +163,7 @@ function mandarGenresIds(listGenres){
                                     <img alt="${val.title}" id="${val.id}" class="filmeBannerHome" style="width: 185px;border-radius:8px;cursor:pointer;" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
-                                    <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
+                                    <h2 style="font-size:20px;margin-bottom: 8px;">${qtdCaract?val.title.substring(0,30)+'...':val.title.substring(0,30)}</h2>
                                     <p style="font-size:14px;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
                                     <p style="font-size:14px;">${val.overview.substring(0,100)}...</p>
                                 </div>
@@ -180,7 +185,7 @@ function mandarGenresIds(listGenres){
                                     <img alt="${val.title}" id="${val.id}" class="filmeBannerHome" style="width: 185px;border-radius:8px;cursor:pointer;" src="https://image.tmdb.org/t/p/w400${val.poster_path}" />
                                 </div>
                                 <div style="margin-left:10px;margin-right:15px">
-                                    <h2 style="font-size:20px;margin-bottom: 8px;">${val.title.substring(0,32)}</h2>
+                                    <h2 style="font-size:20px;margin-bottom: 8px;">${qtdCaract?val.title.substring(0,30)+'...':val.title.substring(0,30)}</h2>
                                     <p style="font-size:14px;margin-bottom: 5px;"><b style="color: gold;">Avalição: </b>${val.vote_average}</p>
                                     <p style="font-size:14px;">${val.overview.substring(0,100)}...</p>
                                 </div>
