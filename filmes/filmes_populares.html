@@ -19,7 +19,8 @@
                     <nav class="menu-desktop">
                         <ul>
                             <li><a href="/">HOME</a></li>
-                            <li><a href="sobre.html">SOBRE</a></li>
+                            <li><a href="/categorias.html">CATEGORIAS</a></li>
+                            <li><a href="/sobre.html">SOBRE</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -28,13 +29,28 @@
             <div class="container">
 
                 <section class="filmesPopulares-todos">
-                    <h1>Todos os Filmes Populares</h1>
+
+                    <div class="filmesFiltro">
+                        <h1>Todos os Filmes Populares</h1>
+                        <div class="selectFiltro">
+                            <p>Filtrar por</p>
+                            <ul class="selectFiltro-menu" style="background-image: url(../src/images/seta-baixo.png);border-radius: 2px;">
+                                <li>Popularidade</li>
+                                <ul class="selectFiltro-subMenu" style="display:none;">
+                                    <li>Bem avaliados</li>
+                                    <li>Recentes</li>
+                                </ul>
+                            </ul>
+                        </div>
+                    </div>
+
                     <div class="filmesPopulares-images">
 
                     </div>
                     <div class="mudarPaginaPopular">
-                        
+                        <img width="60" src="../src/images/loading.gif" />
                     </div>
+
                 </section>
 
             </div>
@@ -51,7 +67,7 @@
             </footer>
         </main>
 
-        <script src="../js/validation/initFilmesPopulares.js"></script>
+        <script src="../js/validation/filtrarFilmesPopulares.js"></script>
     </body>
 
 </html>
