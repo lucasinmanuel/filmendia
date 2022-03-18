@@ -85,7 +85,7 @@ function mudarPagina(numPage){
             filmesRecentes.forEach((value,index)=>{
 
                 filmesRecentes[index].addEventListener('click',()=>{
-                    window.location = 'filme.html?id='+value.id
+                    window.location.href = 'filmes/filme.html?id='+value.id
                 })
 
             })

@@ -84,7 +84,7 @@ function mudarPagina(numPage){
             filmesPopularesImages.forEach((value,index)=>{
 
                 filmesPopularesImages[index].addEventListener('click',()=>{
-                    window.location = 'filme.html?id='+value.id
+                    window.location.href = 'filme.html?id='+value.id
                 })
 
             })

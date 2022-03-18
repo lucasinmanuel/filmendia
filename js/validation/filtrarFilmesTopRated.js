@@ -85,7 +85,7 @@ function mudarPagina(numPage){
             filmesTopRatedPage.forEach((value,index)=>{
 
                 filmesTopRatedPage[index].addEventListener('click',()=>{
-                    window.location = 'filme.html?id='+value.id
+                    window.location.href = 'filme.html?id='+value.id
                 })
 
             })
