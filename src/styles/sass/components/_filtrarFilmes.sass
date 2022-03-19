@@ -11,8 +11,14 @@
 .selectFiltro p
     margin-right: 8px
 
+.selectFiltro li
+    color: black
+    font-size: 15px
+    padding-left: 10px
+    user-select: none 
+
 .selectFiltro-menu
-    width: 150px
+    width: 170px
     height: 35px
     line-height: 35px
     display: flex
@@ -25,8 +31,27 @@
     list-style: none
     z-index: 25
 
+.selectFiltro-menu > li
+    cursor: pointer
+
 .selectFiltro-subMenu
-    width: 150px
+    width: 170px
+    display: flex
+    flex-direction: column
+    background-color: white
+    border-right: 1px solid #ccc
+    border-left: 1px solid #ccc
+    border-bottom: 2px solid #ccc
+    list-style: none
+    z-index: 50
+    margin-top: -1px
+    margin-left: -1px
+
+.selectFiltro-subMenu li
+    cursor: pointer
+
+.selectFiltroGenres-subMenu
+    width: 170px
     display: flex
     flex-direction: column
     background-color: white
@@ -40,9 +65,17 @@
     margin-top: -1px
     margin-left: -1px
 
-.selectFiltro li
-    color: black
-    font-size: 15px
-    padding-left: 10px
-    user-select: none 
+.selectFiltroGenres-subMenu li
+    display: flex
+    align-items: center
+
+.checkBox
+    width: 16px
+    height: 16px
+    border: 1px solid #ccc
+    border-radius: 50% 
+    margin-right: 5px
     cursor: pointer
+
+.checkBox-ativado
+    background-color: gold

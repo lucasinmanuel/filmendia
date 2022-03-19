@@ -1,5 +1,4 @@
 mudarPagina(1)
-
 function mudarPagina(numPage){
 
     //REQUISIÇÃO DOS GÊNEROS DOS FILMES
@@ -8,7 +7,7 @@ function mudarPagina(numPage){
     })
     .then(response=>response.json())
     .then((jsonGenres)=>{
-
+        console.log(jsonGenres)
         const listGenres = jsonGenres.genres
         mandarGenresIds(listGenres)
 
@@ -90,7 +89,7 @@ function mudarPagina(numPage){
 
             })
 
-            //MOSTRA A MUDANÇA DE PÁGINA VOLTAR
+            //MOSTRA A MUDANÇA DE PÁGINA
             var voltarPageUm = false
             var voltarPageDois = false
             var voltarPageDez = false
@@ -103,7 +102,7 @@ function mudarPagina(numPage){
             if(jsonRecentes.page > 10){
                 voltarPageDez = true
             }
-            //MOSTRA A MUDANÇA DE PÁGINA
+
             const filmesPopularesPage = document.querySelector('.mudarPaginaRecentes')
             filmesPopularesPage.innerHTML = `
 
@@ -129,19 +128,19 @@ function mudarPagina(numPage){
 
                     if(valueNumPage.classList.value === 'pagRecentes skipDez'){
 
-                        //AVANÇAR DEZ PÁGINAS
+                        //AVANÇAR 10 PÁGINAS
                         let numPage = valueNumPage.innerHTML.substring(3)
                         mudarPagina(numPage)
 
                     }else if(valueNumPage.classList.value === 'pagRecentes backDez'){
 
-                        //VOLTAR DE DEZ PÁGINAS
+                        //VOLTAR 10 PÁGINAS
                         let numPage = valueNumPage.innerHTML.substring(0,2)
                         mudarPagina(numPage)
 
                     }else{
 
-                        //AVANÇAR UMA PÁGINA
+                        //AVANÇAR E VOLTAR 1 e 2 PÁGINAS
                         let numPage = valueNumPage.innerHTML
                         mudarPagina(numPage)
 
@@ -160,6 +159,7 @@ function mudarPagina(numPage){
 //FILTRAR FILMES, MOSTRAR MENU DROPDOWN
 const selectMenu = document.querySelector('.selectFiltro-menu')
 const selectSubMenu = document.querySelector('.selectFiltro-subMenu')
+const selectSubMenuGenres = document.querySelector('.selectFiltroGenres-subMenu')
 
 selectMenu.addEventListener('click',()=>{
 
@@ -168,11 +168,17 @@ selectMenu.addEventListener('click',()=>{
         selectMenu.style.borderTopLeftRadius = '2px'
         selectMenu.style.borderTopRightRadius = '2px'
         selectSubMenu.style.display = 'block'
+        selectSubMenuGenres.style.display = 'block'
     }else{
         selectMenu.style.borderRadius = '2px'
         selectSubMenu.style.display = 'none'
+        selectSubMenuGenres.style.display = 'none'
     }
     
+})
+
+selectSubMenuGenres.addEventListener('click',(e)=>{
+    e.stopPropagation()
 })
 
 const selectSubMenuItems = document.querySelectorAll('.selectFiltro-subMenu li')
@@ -186,7 +192,7 @@ selectSubMenuItems.forEach((value,index)=>{
         }else if(value.innerHTML === 'Bem avaliados'){
             document.location.href = 'filmes/filmes_top_rated.html'
         }else{
-
+            document.location.href = '404.html'
         }
 
     })

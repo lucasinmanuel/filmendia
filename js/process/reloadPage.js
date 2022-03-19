@@ -1,3 +1,6 @@
+const previewPopularBullet = document.querySelectorAll('.previewPopular-bullets span')
+const previewTopRatedBullet = document.querySelectorAll('.previewTopRated-bullets span')
+
 window.addEventListener('resize',()=>{
     
     previewPopularBullet[0].click()

@@ -62,7 +62,7 @@ function mandarGenresIds(listGenres){
                 }
                 generos.forEach((value)=>{
 
-                    //VALIDAÇÃO PARA PEGAR TRÊS FILMES DE AÇÃO
+                    //3 FILMES DE AÇÃO
                     if(value === 'Ação'){
 
                         if(qtdFilmeAcao < 3 && val.overview != "" && val.vote_average >= 6.5){
@@ -85,6 +85,7 @@ function mandarGenresIds(listGenres){
 
                     }
 
+                    //3 FILMES DE FANTASIA
                     if(value === 'Fantasia'){
 
                         if(qtdFilmeFantasia < 3 && val.overview != "" && val.vote_average >= 6.5){
@@ -107,7 +108,7 @@ function mandarGenresIds(listGenres){
 
                     }
 
-                    //VALIDAÇÃO PARA PEGAR TRÊS FILMES DE MISTÉRIO
+                    //3 FILMES DE MISTÉRIO
                     if(value === 'Mistério'){
                 
                         if(qtdFilmeMisterio < 3 && val.overview != "" && val.vote_average >= 6.5){
@@ -130,7 +131,7 @@ function mandarGenresIds(listGenres){
                         
                     }
 
-                    //VALIDAÇÃO PARA PEGAR TRÊS FILMES DE ROMANCE
+                    //3 FILMES DE ROMANCE
                     if(value === 'Romance'){
 
                         if(qtdFilmeRomance < 3 && val.overview != "" && val.vote_average >= 6.5){
@@ -153,6 +154,7 @@ function mandarGenresIds(listGenres){
 
                     }
 
+                    //3 FILMES DE ANIMAÇÃO
                     if(value === 'Animação'){
 
                         if(qtdFilmeAnimacao < 3 && val.overview != "" && val.vote_average >= 6.5){
@@ -175,6 +177,7 @@ function mandarGenresIds(listGenres){
 
                     }
                     
+                    //3 FILMES DE TERROR
                     if(value === 'Terror'){
 
                         if(qtdFilmeTerror < 3 && val.overview != "" && val.vote_average >= 6.5){
@@ -199,9 +202,9 @@ function mandarGenresIds(listGenres){
 
                 })
 
-            })//JSON FOREACH NOW_PLAYING PÁGINAS
+            })//FOREACH FILMES VALIDADOS PELO GÊNERO
             
-            //ENVIA O ID DOS FILMES DO BANNER HOME VIA URL PARA UTILIZAR NA PÁGINA filmes/filme.html
+            //MANDA ID DO FILME CLICADO PARA URL, ID UTILIZADA NA PÁGINA filmes/filme.html
             var filmeNowPlaying = document.querySelectorAll('.filmeBannerHome')
             filmeNowPlaying.forEach((value,index)=>{
                 
@@ -211,8 +214,55 @@ function mandarGenresIds(listGenres){
 
             })
 
-        })//THEN JSON
+        })//JSON DOS FILMES NOW_PLAYING
+
+    })//FOREACH ALTERAR PÁGINA DA REQUISÇÃO
+
+    var bannerHomeTop3 = document.querySelectorAll('.bannerHome-top3')
+    const bannerHomeSliderBullets = document.querySelector('.bannerHomeSlider-bullets')
+
+    //QUANTIDADE D BULLETS NO BANNER HOME
+    for(let i = 0;i < bannerHomeTop3.length - 1;i++){
+        
+        if(i === 0){
+            bannerHomeSliderBullets.innerHTML += `<span style="background-color:rgb(250,250,250);cursor:pointer;"></span>`
+        }
+        bannerHomeSliderBullets.innerHTML += `<span style="cursor:pointer;"></span>`
+
+    }
+
+    const qtdSpanBullets = document.querySelectorAll('.bannerHomeSlider-bullets span')
+
+    //CLICK SLIDER BANNER HOME
+    bannerHomeTop3.forEach((value,index)=>{
+
+        qtdSpanBullets[index].addEventListener('click',()=>{
+
+            for(let i = 0;i < bannerHomeTop3.length;i++){
+
+                bannerHomeTop3[i].style.opacity = '0'
+                bannerHomeTop3[i].style.zIndex = '15'
+                qtdSpanBullets[i].style.backgroundColor = 'rgba(250,250,250,0.3)'
+
+            }
+
+            bannerHomeTop3[index].style.opacity = '1'
+            bannerHomeTop3[index].style.zIndex = '20'
+            qtdSpanBullets[index].style.backgroundColor = 'rgb(250,250,250)'
+
+        })
 
     })
+
+    //CRÔNOMETOR PARA ALTERAÇÃO DO SLIDER BANNER HOME
+    var clickSlider = 1
+    setInterval(()=>{
+        qtdSpanBullets[clickSlider].click()
+        clickSlider++
+        if(clickSlider === qtdSpanBullets.length){
+            clickSlider = 0
+        }    
+    },10000)
+
     
-}
+}//FUNÇÃO COM PARAMETRO, TRAZENDO LISTA DE GÊNEROS DE FILMES

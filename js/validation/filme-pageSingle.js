@@ -1,7 +1,7 @@
 var urlAtual = window.location.href
 var urlFilmeId = urlAtual.split('=')[1]
 
-//INFORMAÇÕES DO FILME
+//REQUISIÇÃO DE FILME PELO ID VIA URL
 fetch(`https://api.themoviedb.org/3/movie/${urlFilmeId}?api_key=d9006a76b9606894cb5d01eda1af5904&language=pt-br`, {
     method: 'GET'
 })
@@ -20,13 +20,21 @@ fetch(`https://api.themoviedb.org/3/movie/${urlFilmeId}?api_key=d9006a76b9606894
     var dataDia = dataAmericanaSplit[2]
     var dataMes = dataAmericanaSplit[1]
     var dataAno = dataAmericanaSplit[0]
+    
+    var descricaoFilme = false
+    if(jsonFilmeId.release_date === ""){
+
+        var descricaoFilme = true
+
+    }
 
     //TRADUÇÃO DE STATUS DO FILME RELEASED/PLANNED
     if(jsonFilmeId.status === 'Released'){
         var filmeStatus = 'Liberado'
     }else{
         var filmeStatus = 'Planejado'
-    }            
+    }
+    console.log(jsonFilmeId)            
     const templateInfo = document.querySelector('.templateFilme-infos')
     templateInfo.innerHTML = `
     
@@ -34,7 +42,7 @@ fetch(`https://api.themoviedb.org/3/movie/${urlFilmeId}?api_key=d9006a76b9606894
         <p><b style="color:#c1c1c1;">Título original: </b>${jsonFilmeId.original_title}</p>
         <p><b style="color:#c1c1c1;">Língua original: </b>${jsonFilmeId.original_language}</p>
         <p><b style="color:#c1c1c1;">Status: </b>${filmeStatus}</p>
-        <p><b style="color:#c1c1c1;">Data de lançamento: </b>${dataDia+'/'+dataMes+'/'+dataAno}</p>
+        <p><b style="color:#c1c1c1;">Data de lançamento: </b>${descricaoFilme?'Indefinida':dataDia+'/'+dataMes+'/'+dataAno}</p>
         <p><b style="color:#c1c1c1">Avalição: </b>${jsonFilmeId.vote_average}<p/>
         <p><b style="color:#c1c1c1">Gênero: </b>${jsonFilmeId.genres.map((value)=>{
             return " "+value.name
@@ -62,6 +70,7 @@ fetch(`https://api.themoviedb.org/3/movie/${urlFilmeId}?api_key=d9006a76b9606894
 
 })
 
+//REQUISIÇÃO DOS TRAILERS DO FILME PELO ID VIA URL
 fetch(`https://api.themoviedb.org/3/movie/${urlFilmeId}/videos?api_key=d9006a76b9606894cb5d01eda1af5904&language=pt-br`, {
     method: 'GET'
 })
@@ -101,6 +110,7 @@ fetch(`https://api.themoviedb.org/3/movie/${urlFilmeId}/videos?api_key=d9006a76b
     
 })
 
+//REQUISIÇÃO DOS FILMES SIMILARES PELO ID URL
 fetch(`https://api.themoviedb.org/3/movie/${urlFilmeId}/similar?api_key=d9006a76b9606894cb5d01eda1af5904&language=pt-br`, {
     method: 'GET'
 })
