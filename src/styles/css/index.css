@@ -209,6 +209,12 @@ nav.menu-desktop a {
 
 .checkBox-ativado {
   background-color: gold;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  margin-right: 5px;
+  cursor: pointer;
 }
 
 .banner-home {
