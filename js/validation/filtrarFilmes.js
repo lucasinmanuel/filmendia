@@ -1,4 +1,34 @@
-initCategorias(1,'now_playing')
+const h1TitlePage = document.querySelector('.filmesFiltro h1')
+const clickMenuItem = document.querySelector('.selectFiltro-menu > li')
+const clickSubMenuItems = document.querySelectorAll('.selectFiltro-subMenu li')
+
+if(window.location.href.substring(45,52) === 'popular'){
+
+    var filterInitial = 'popular'
+    h1TitlePage.innerHTML = 'Todos os Filmes Populares'
+    clickMenuItem.innerHTML = 'Popularidade'
+    clickSubMenuItems[0].innerHTML = 'Bem avaliados'
+    clickSubMenuItems[1].innerHTML = 'Recentes'
+
+}else if(window.location.href.substring(45,54) === 'top_rated'){
+
+    var filterInitial = 'top_rated'
+    h1TitlePage.innerHTML = 'Todos os Filmes Bem Avaliados'
+    clickMenuItem.innerHTML = 'Bem avaliados'
+    clickSubMenuItems[0].innerHTML = 'Popularidade'
+    clickSubMenuItems[1].innerHTML = 'Recentes'
+
+}else{
+
+    var filterInitial = 'now_playing'
+    h1TitlePage.innerHTML = 'Todos os Filmes Recentes'
+    clickMenuItem.innerHTML = 'Recentes'
+    clickSubMenuItems[0].innerHTML = 'Bem avaliados'
+    clickSubMenuItems[1].innerHTML = 'Popularidade'
+
+}
+
+initCategorias(1,filterInitial)
 
 function initCategorias(numPage,filtroFilme){
 
@@ -40,7 +70,7 @@ function initCategorias(numPage,filtroFilme){
             }
             
         })
-
+        
         //CLIQUE CHECK BOX PARA ATIVAR, ADCIONANDO ID-GÊNERO A URL E ESTILIZANDO
         const clickFiltroBullet = document.querySelectorAll('.checkBox')
         const clickFiltroBulletActive = document.querySelectorAll('.checkBox-ativado')
@@ -48,15 +78,20 @@ function initCategorias(numPage,filtroFilme){
 
             clickFiltroBullet[index].addEventListener('click',()=>{
 
-                if(window.location.href.includes('?')){
+                if(window.location.href.includes('?') === true && window.location.href.includes('genre') === false){
+
+                    clickFiltroBullet[index].className = 'checkBox-ativado'
+                    document.location.href += '&genre-'+valueGenre.id
+
+                }else if(window.location.href.includes('genre') === true){
 
                     clickFiltroBullet[index].className = 'checkBox-ativado'
                     document.location.href += '-'+valueGenre.id
 
-                }else{
+                }else if(window.location.href.includes('?') === false){
 
                     clickFiltroBullet[index].className = 'checkBox-ativado'
-                    document.location.href = '?filter=genre-'+valueGenre.id
+                    document.location.href += '?filter=genre-'+valueGenre.id
 
                 }
 
@@ -71,10 +106,14 @@ function initCategorias(numPage,filtroFilme){
 
                 if(window.location.href.includes('?')){
 
-                    if(window.location.href.split('-').length === 2){
+                    if(urlGenresIdSplit.length === 2){
 
                         clickFiltroBulletActive[index].className = 'checkBox'
-                        window.location.href = 'categorias.html'
+                        if(filterInitial != 'now_playing'){
+                            window.location.href = 'categorias.html?filter='+filterInitial
+                        }else{
+                            window.location.href = 'categorias.html'
+                        }  
 
                     }else{
 
@@ -98,7 +137,7 @@ function initCategorias(numPage,filtroFilme){
 
         })
         
-        //REQUISIÇÃO DOS FILMES POPULARES POR PÁGINA
+        //REQUISIÇÃO DOS FILMES FILTRADOS POR RECENTES, BEM AVALIADOS E POPULARIDADE
         fetch('https://api.themoviedb.org/3/movie/'+filtroFilme+'?api_key=d9006a76b9606894cb5d01eda1af5904&language=pt-br&page='+numPage, {
             method: 'GET'
         })
@@ -109,16 +148,16 @@ function initCategorias(numPage,filtroFilme){
             filmesRecentesImages.innerHTML = '' //RESET DE IMAGENS POR PÁGINA
 
             jsonFilmes.results.map((val)=>{
-
+                
                 var generos = []
                 //ANALISA O GÊNERO DO FILME E MANDA PARA O ARRAY generos
-                listGenres.forEach((value) => {
+                listGenres.forEach((valueList) => {
                 
                     for(let i = 0;i < val.genre_ids.length;i++){
                         
-                        if(val.genre_ids[i] === value.id){
+                        if(val.genre_ids[i] === valueList.id){
 
-                            generos.push(value.name)
+                            generos.push(valueList.name)
 
                         }
                         
@@ -126,7 +165,7 @@ function initCategorias(numPage,filtroFilme){
 
                 });
 
-                //FORMATANDO DATA AMERICANA PARA BRASILEIRA
+                //FORMATANDO DATA EM FORMATO AMERICANO
                 var dataAmericanaSplit = val.release_date.split('-')
                 var dataDia = dataAmericanaSplit[2]
                 var dataMes = dataAmericanaSplit[1]
@@ -142,25 +181,67 @@ function initCategorias(numPage,filtroFilme){
                     qtdCaractTitle = true
                 }
 
-                filmesRecentesImages.innerHTML += `
+                if(urlGenresIdSplit.length > 1){
 
-                    <div style="width:33.3%;display:flex;margin-bottom:15px;background-color:#1E1E1E;padding:10px;">
-                        <div style="width:45%;display:flex;align-items:center;">
-                            <img id="${val.id}" class="filmeRecentes" style="width:100%;cursor:pointer;" alt="${val.title}" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
-                        </div>
-                        <div style="width:55%;padding: 0 10px;">
-                            <h2 style="font-size:17px;margin-bottom:5px;">${qtdCaractTitle?val.title.substring(0,15)+'...':val.title}</h2>
-                            <p style="font-size:14px;"><b style="color:#c1c1c1;">Data de lançamento: </b>${dataDia+'/'+dataMes+'/'+dataAno}</p>
-                            <p style="font-size:14px;"><b style="color:#c1c1c1;">Avalição: </b>${val.vote_average}</p>
-                            <p style="font-size:14px;"><b style="color:#c1c1c1;">Gênero: </b>${generos.map((value)=>{
-                                return " "+value
-                            })}</p>
-                            <h3 style="font-size:14px;margin:8px 0;">SINOPSE</h3>
-                            <p style="font-size:14px;">${qtdCaractSinopse?val.overview.substring(0,80)+'...':val.overview}</p>
-                        </div>
-                    </div>
+                    urlGenresIdSplit.forEach((value,index)=>{
 
-                `
+                        if(index > 0){
+                            
+                            for(let i = 0;i < val.genre_ids.length;i++){
+                            
+                                if(val.genre_ids[i] == value){
+        
+                                    filmesRecentesImages.innerHTML += `
+    
+                                        <div style="width:33.3%;display:flex;margin-bottom:15px;background-color:#1E1E1E;padding:10px;">
+                                            <div style="width:45%;display:flex;align-items:center;">
+                                                <img id="${val.id}" class="filmeRecentes" style="width:100%;cursor:pointer;" alt="${val.title}" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
+                                            </div>
+                                            <div style="width:55%;padding: 0 10px;">
+                                                <h2 style="font-size:17px;margin-bottom:5px;">${qtdCaractTitle?val.title.substring(0,15)+'...':val.title}</h2>
+                                                <p style="font-size:14px;"><b style="color:#c1c1c1;">Data de lançamento: </b>${dataDia+'/'+dataMes+'/'+dataAno}</p>
+                                                <p style="font-size:14px;"><b style="color:#c1c1c1;">Avalição: </b>${val.vote_average}</p>
+                                                <p style="font-size:14px;"><b style="color:#c1c1c1;">Gênero: </b>${generos.map((value)=>{
+                                                    return " "+value
+                                                })}</p>
+                                                <h3 style="font-size:14px;margin:8px 0;">SINOPSE</h3>
+                                                <p style="font-size:14px;">${qtdCaractSinopse?val.overview.substring(0,80)+'...':val.overview}</p>
+                                            </div>
+                                        </div>
+    
+                                    `      
+        
+                                }
+                                
+                            }
+    
+                        }
+    
+                    })
+
+                }else{
+
+                    filmesRecentesImages.innerHTML += `
+
+                        <div style="width:33.3%;display:flex;margin-bottom:15px;background-color:#1E1E1E;padding:10px;">
+                            <div style="width:45%;display:flex;align-items:center;">
+                                <img id="${val.id}" class="filmeRecentes" style="width:100%;cursor:pointer;" alt="${val.title}" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
+                            </div>
+                            <div style="width:55%;padding: 0 10px;">
+                                <h2 style="font-size:17px;margin-bottom:5px;">${qtdCaractTitle?val.title.substring(0,15)+'...':val.title}</h2>
+                                <p style="font-size:14px;"><b style="color:#c1c1c1;">Data de lançamento: </b>${dataDia+'/'+dataMes+'/'+dataAno}</p>
+                                <p style="font-size:14px;"><b style="color:#c1c1c1;">Avalição: </b>${val.vote_average}</p>
+                                <p style="font-size:14px;"><b style="color:#c1c1c1;">Gênero: </b>${generos.map((value)=>{
+                                    return " "+value
+                                })}</p>
+                                <h3 style="font-size:14px;margin:8px 0;">SINOPSE</h3>
+                                <p style="font-size:14px;">${qtdCaractSinopse?val.overview.substring(0,80)+'...':val.overview}</p>
+                            </div>
+                        </div>
+
+                    `   
+
+                }
 
             })//ADCIONANDO OS FILMES E VALIDANDO OS GÊNEROS POR CADA PÁGINA
 
@@ -187,6 +268,7 @@ function initCategorias(numPage,filtroFilme){
             if(jsonFilmes.page > 10){
                 voltarPageDez = true
             }
+
 
             const filmesPopularesPage = document.querySelector('.mudarPaginaRecentes')
             filmesPopularesPage.innerHTML = `
@@ -269,9 +351,6 @@ subMenuGenres.addEventListener('click',(e)=>{
 })
 
 //ALTERAR FILTRO RECENTES/POPULARIDADE/BEM AVALIADOS
-const h1TitlePage = document.querySelector('.filmesFiltro h1')
-const clickMenuItem = document.querySelector('.selectFiltro-menu > li')
-const clickSubMenuItems = document.querySelectorAll('.selectFiltro-subMenu li')
 clickSubMenuItems.forEach((value,index)=>{
 
     clickSubMenuItems[index].addEventListener('click',()=>{
@@ -281,6 +360,7 @@ clickSubMenuItems.forEach((value,index)=>{
             clickSubMenuItems[index].innerHTML = clickMenuItem.innerHTML
             clickMenuItem.innerHTML = 'Popularidade'
             h1TitlePage.innerHTML = 'Todos os Filmes Populares'
+            document.location.href = '?filter=popular'
             initCategorias(1,'popular')
 
         }else if(value.innerHTML === 'Bem avaliados'){
@@ -288,6 +368,7 @@ clickSubMenuItems.forEach((value,index)=>{
             clickSubMenuItems[index].innerHTML = clickMenuItem.innerHTML
             clickMenuItem.innerHTML = 'Bem avaliados'
             h1TitlePage.innerHTML = 'Todos os Filmes Bem Avaliados'
+            document.location.href = '?filter=top_rated'
             initCategorias(1,'top_rated')
 
         }else if(value.innerHTML === 'Recentes'){
@@ -295,6 +376,7 @@ clickSubMenuItems.forEach((value,index)=>{
             clickSubMenuItems[index].innerHTML = clickMenuItem.innerHTML
             clickMenuItem.innerHTML = 'Recentes'
             h1TitlePage.innerHTML = 'Todos os Filmes Recentes'
+            document.location.href = 'categorias.html'
             initCategorias(1,'now_playing')
             
         }else{
