@@ -1,36 +1,43 @@
-const h1TitlePage = document.querySelector('.filmesFiltro h1')
-const clickMenuItem = document.querySelector('.selectFiltro-menu > li')
-const clickSubMenuItems = document.querySelectorAll('.selectFiltro-subMenu li')
+initconfig()
+function initconfig(){
 
-if(window.location.href.substring(45,52) === 'popular'){
+    const h1TitlePage = document.querySelector('.filmesFiltro h1')
+    const clickMenuItem = document.querySelector('.selectFiltro-menu > li')
+    const clickSubMenuItems = document.querySelectorAll('.selectFiltro-subMenu li')
 
-    var filterInitial = 'popular'
-    h1TitlePage.innerHTML = 'Todos os Filmes Populares'
-    clickMenuItem.innerHTML = 'Popularidade'
-    clickSubMenuItems[0].innerHTML = 'Bem avaliados'
-    clickSubMenuItems[1].innerHTML = 'Recentes'
+    if(window.location.href.substring(45,52) === 'popular'){
 
-}else if(window.location.href.substring(45,54) === 'top_rated'){
+        var filterInitial = 'popular'
+        h1TitlePage.innerHTML = 'Todos os Filmes Populares'
+        clickMenuItem.innerHTML = 'Popularidade'
+        clickSubMenuItems[0].innerHTML = 'Bem avaliados'
+        clickSubMenuItems[1].innerHTML = 'Recentes'
 
-    var filterInitial = 'top_rated'
-    h1TitlePage.innerHTML = 'Todos os Filmes Bem Avaliados'
-    clickMenuItem.innerHTML = 'Bem avaliados'
-    clickSubMenuItems[0].innerHTML = 'Popularidade'
-    clickSubMenuItems[1].innerHTML = 'Recentes'
+    }else if(window.location.href.substring(45,54) === 'top_rated'){
 
-}else{
+        var filterInitial = 'top_rated'
+        h1TitlePage.innerHTML = 'Todos os Filmes Bem Avaliados'
+        clickMenuItem.innerHTML = 'Bem avaliados'
+        clickSubMenuItems[0].innerHTML = 'Popularidade'
+        clickSubMenuItems[1].innerHTML = 'Recentes'
 
-    var filterInitial = 'now_playing'
-    h1TitlePage.innerHTML = 'Todos os Filmes Recentes'
-    clickMenuItem.innerHTML = 'Recentes'
-    clickSubMenuItems[0].innerHTML = 'Bem avaliados'
-    clickSubMenuItems[1].innerHTML = 'Popularidade'
+    }else{
+
+        var filterInitial = 'now_playing'
+        h1TitlePage.innerHTML = 'Todos os Filmes Recentes'
+        clickMenuItem.innerHTML = 'Recentes'
+        clickSubMenuItems[0].innerHTML = 'Bem avaliados'
+        clickSubMenuItems[1].innerHTML = 'Popularidade'
+
+    }
+
+    refazerFetch(1,filterInitial)
+
+    filterDropDown()
 
 }
 
-initCategorias(1,filterInitial)
-
-function initCategorias(numPage,filtroFilme){
+function refazerFetch(numPage,filtroFilme){
 
     //REQUISIÇÃO DA LISTA DE GÊNEROS DOS FILMES
     fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=d9006a76b9606894cb5d01eda1af5904&language=pt-br', {
@@ -48,6 +55,7 @@ function initCategorias(numPage,filtroFilme){
 
         //ADCIONANDO OS CHECK BOX FILTROS DINAMICAMENTE 
         var urlGenresIdSplit = window.location.href.split('-')
+        const subMenuGenres = document.querySelector('ul.selectFiltroGenres-subMenu')
         subMenuGenres.innerHTML = '' //RESET DE FILTROS POR PÁGINA
         
         listGenres.forEach((value)=>{
@@ -74,24 +82,29 @@ function initCategorias(numPage,filtroFilme){
         //CLIQUE CHECK BOX PARA ATIVAR, ADCIONANDO ID-GÊNERO A URL E ESTILIZANDO
         const clickFiltroBullet = document.querySelectorAll('.checkBox')
         const clickFiltroBulletActive = document.querySelectorAll('.checkBox-ativado')
+        
         clickFiltroBullet.forEach((valueGenre,index)=>{
 
             clickFiltroBullet[index].addEventListener('click',()=>{
+                
+                for(let i = 0;i < clickFiltroBulletActive.length;i++){
+                    clickFiltroBulletActive[i].className = 'checkBox'
+                } 
 
-                if(window.location.href.includes('?') === true && window.location.href.includes('genre') === false){
-
-                    clickFiltroBullet[index].className = 'checkBox-ativado'
-                    document.location.href += '&genre-'+valueGenre.id
-
-                }else if(window.location.href.includes('genre') === true){
-
-                    clickFiltroBullet[index].className = 'checkBox-ativado'
-                    document.location.href += '-'+valueGenre.id
-
-                }else if(window.location.href.includes('?') === false){
+                if(window.location.href.includes('popular')){
 
                     clickFiltroBullet[index].className = 'checkBox-ativado'
-                    document.location.href += '?filter=genre-'+valueGenre.id
+                    document.location.href = '?filter=popular&genre-'+valueGenre.id
+
+                }else if(window.location.href.includes('top_rated')){
+
+                    clickFiltroBullet[index].className = 'checkBox-ativado'
+                    document.location.href = '?filter=popular&genre-'+valueGenre.id
+
+                }else{
+
+                    clickFiltroBullet[index].className = 'checkBox-ativado'
+                    document.location.href = '?filter=genre-'+valueGenre.id
 
                 }
 
@@ -138,15 +151,16 @@ function initCategorias(numPage,filtroFilme){
         })
         
         //REQUISIÇÃO DOS FILMES FILTRADOS POR RECENTES, BEM AVALIADOS E POPULARIDADE
-        fetch('https://api.themoviedb.org/3/movie/'+filtroFilme+'?api_key=d9006a76b9606894cb5d01eda1af5904&language=pt-br&page='+numPage, {
+        fetch(`https://api.themoviedb.org/3/movie/${filtroFilme}?api_key=d9006a76b9606894cb5d01eda1af5904&language=pt-br&page=${numPage}`, {
             method: 'GET'
         })
         .then(response => response.json())
         .then((jsonFilmes)=>{
-            
-            const filmesRecentesImages = document.querySelector('.filmesRecentes-images')
-            filmesRecentesImages.innerHTML = '' //RESET DE IMAGENS POR PÁGINA
 
+            console.log(jsonFilmes.page)
+            const filmesRecentesImages = document.querySelector('.filmesRecentes-images')
+            filmesRecentesImages.innerHTML = '' //RESET DE IMAGENS POR PÁGINA 
+            
             jsonFilmes.results.map((val)=>{
                 
                 var generos = []
@@ -182,18 +196,18 @@ function initCategorias(numPage,filtroFilme){
                 }
 
                 if(urlGenresIdSplit.length > 1){
-
+                    
                     urlGenresIdSplit.forEach((value,index)=>{
 
                         if(index > 0){
                             
                             for(let i = 0;i < val.genre_ids.length;i++){
                             
-                                if(val.genre_ids[i] == value){
+                                if(val.genre_ids[i] == value && document.querySelectorAll('.filmesSingle').length < 20){
         
                                     filmesRecentesImages.innerHTML += `
     
-                                        <div style="width:33.3%;display:flex;margin-bottom:15px;background-color:#1E1E1E;padding:10px;">
+                                        <div class="filmesSingle" style="width:33.3%;display:flex;margin-bottom:15px;background-color:#1E1E1E;padding:10px;">
                                             <div style="width:45%;display:flex;align-items:center;">
                                                 <img id="${val.id}" class="filmeRecentes" style="width:100%;cursor:pointer;" alt="${val.title}" src="https://image.tmdb.org/t/p/w300${val.poster_path}" />
                                             </div>
@@ -239,7 +253,7 @@ function initCategorias(numPage,filtroFilme){
                             </div>
                         </div>
 
-                    `   
+                    `
 
                 }
 
@@ -259,27 +273,26 @@ function initCategorias(numPage,filtroFilme){
             var voltarPageUm = false
             var voltarPageDois = false
             var voltarPageDez = false
-            if(jsonFilmes.page > 1){
+            if(numPage > 1){
                 voltarPageUm = true
             }
-            if(jsonFilmes.page > 2){
+            if(numPage > 2){
                 voltarPageDois = true
             }
-            if(jsonFilmes.page > 10){
+            if(numPage > 10){
                 voltarPageDez = true
             }
-
 
             const filmesPopularesPage = document.querySelector('.mudarPaginaRecentes')
             filmesPopularesPage.innerHTML = `
 
-                <p class="pagRecentes backDez" style="cursor:pointer;opacity:0.6;">${voltarPageDez?jsonFilmes.page - 10:'*'}...</p>
-                <p class="pagRecentes" style="cursor:pointer;opacity:0.6;">${voltarPageDois?jsonFilmes.page - 2:'*'}</p>
-                <p class="pagRecentes" style="cursor:pointer;opacity:0.6;">${voltarPageUm?jsonFilmes.page - 1:'*'}</p>
-                <p class="pagRecentes" style="border-bottom:2px solid gold;cursor:pointer;margin-top:2px;">${jsonFilmes.page}</p>
-                <p class="pagRecentes" style="cursor:pointer;">${jsonFilmes.page + 1}</p>
-                <p class="pagRecentes" style="cursor:pointer;">${jsonFilmes.page + 2}</p>
-                <p class="pagRecentes skipDez" style="cursor:pointer;">...${jsonFilmes.page + 10}</p>
+                <p class="pagRecentes backDez" style="cursor:pointer;opacity:0.6;">${voltarPageDez?numPage - 10:'*'}...</p>
+                <p class="pagRecentes" style="cursor:pointer;opacity:0.6;">${voltarPageDois?numPage - 2:'*'}</p>
+                <p class="pagRecentes" style="cursor:pointer;opacity:0.6;">${voltarPageUm?numPage - 1:'*'}</p>
+                <p class="pagRecentes" style="border-bottom:2px solid gold;cursor:pointer;margin-top:2px;">${numPage}</p>
+                <p class="pagRecentes" style="cursor:pointer;">${parseInt(numPage) + 1}</p>
+                <p class="pagRecentes" style="cursor:pointer;">${parseInt(numPage) + 2}</p>
+                <p class="pagRecentes skipDez" style="cursor:pointer;">...${parseInt(numPage) + 10}</p>
                 
             `
 
@@ -297,19 +310,29 @@ function initCategorias(numPage,filtroFilme){
 
                         //AVANÇAR 10 PÁGINAS
                         let numPageClick = valueNumPage.innerHTML.substring(3)
-                        initCategorias(numPageClick,filtroFilme)
+                        refazerFetch(numPageClick,filtroFilme)         
 
                     }else if(valueNumPage.classList.value === 'pagRecentes backDez'){
 
-                        //VOLTAR 10 PÁGINAS
-                        let numPageClick = valueNumPage.innerHTML.substring(0,2)
-                        initCategorias(numPageClick,filtroFilme)
+                        if(valueNumPage.innerHTML.length === 5){
+
+                            //VOLTAR 10 PÁGINAS
+                            let numPageClick = valueNumPage.innerHTML.substring(0,2)
+                            refazerFetch(numPageClick,filtroFilme)
+
+                        }else{
+
+                            //VOLTAR 100 PÁGINAS
+                            let numPageClick = valueNumPage.innerHTML.substring(0,3)
+                            refazerFetch(numPageClick,filtroFilme)
+
+                        }
 
                     }else{
 
                         //AVANÇAR E VOLTAR 1 e 2 PÁGINAS
                         let numPageClick = valueNumPage.innerHTML
-                        initCategorias(numPageClick,filtroFilme)
+                        refazerFetch(numPageClick,filtroFilme)
 
                     }
                     
@@ -319,73 +342,81 @@ function initCategorias(numPage,filtroFilme){
 
         })//JSON FETCH FILMES
 
-    }//JSON FETCH LISTA DE GÊNEROS DE FILMES
+    }//FUNCTION mandarGenresIds
 
 }
 
-//MOSTRAR MENU DROPDOWN DE FILTROS
-const clickMenu = document.querySelector('ul.selectFiltro-menu')
-const clickSubMenu = document.querySelector('ul.selectFiltro-subMenu')
-const subMenuGenres = document.querySelector('ul.selectFiltroGenres-subMenu')
-clickMenu.addEventListener('click',()=>{
+function filterDropDown(){
 
-    if(clickSubMenu.style.display === 'none'){
+    //MOSTRAR MENU DROPDOWN DE FILTROS
+    const clickMenu = document.querySelector('ul.selectFiltro-menu')
+    const clickSubMenu = document.querySelector('ul.selectFiltro-subMenu')
+    const subMenuGenres = document.querySelector('ul.selectFiltroGenres-subMenu')
+    clickMenu.addEventListener('click',()=>{
 
-        clickMenu.style.borderRadius = '0'
-        clickMenu.style.borderTopLeftRadius = '2px'
-        clickMenu.style.borderTopRightRadius = '2px'
-        clickSubMenu.style.display = 'block'
-        subMenuGenres.style.display = 'block'
+        if(clickSubMenu.style.display === 'none'){
 
-    }else{
+            clickMenu.style.borderRadius = '0'
+            clickMenu.style.borderTopLeftRadius = '2px'
+            clickMenu.style.borderTopRightRadius = '2px'
+            clickSubMenu.style.display = 'block'
+            subMenuGenres.style.display = 'block'
 
-        clickMenu.style.borderRadius = '2px'
-        clickSubMenu.style.display = 'none'
-        subMenuGenres.style.display = 'none'
-
-    }
-    
-})
-subMenuGenres.addEventListener('click',(e)=>{
-    e.stopPropagation()
-})
-
-//ALTERAR FILTRO RECENTES/POPULARIDADE/BEM AVALIADOS
-clickSubMenuItems.forEach((value,index)=>{
-
-    clickSubMenuItems[index].addEventListener('click',()=>{
-
-        if(value.innerHTML === 'Popularidade'){
-
-            clickSubMenuItems[index].innerHTML = clickMenuItem.innerHTML
-            clickMenuItem.innerHTML = 'Popularidade'
-            h1TitlePage.innerHTML = 'Todos os Filmes Populares'
-            document.location.href = '?filter=popular'
-            initCategorias(1,'popular')
-
-        }else if(value.innerHTML === 'Bem avaliados'){
-
-            clickSubMenuItems[index].innerHTML = clickMenuItem.innerHTML
-            clickMenuItem.innerHTML = 'Bem avaliados'
-            h1TitlePage.innerHTML = 'Todos os Filmes Bem Avaliados'
-            document.location.href = '?filter=top_rated'
-            initCategorias(1,'top_rated')
-
-        }else if(value.innerHTML === 'Recentes'){
-
-            clickSubMenuItems[index].innerHTML = clickMenuItem.innerHTML
-            clickMenuItem.innerHTML = 'Recentes'
-            h1TitlePage.innerHTML = 'Todos os Filmes Recentes'
-            document.location.href = 'categorias.html'
-            initCategorias(1,'now_playing')
-            
         }else{
-            document.location.href = '404.html'
+
+            clickMenu.style.borderRadius = '2px'
+            clickSubMenu.style.display = 'none'
+            subMenuGenres.style.display = 'none'
+
         }
+        
+    })
+    subMenuGenres.addEventListener('click',(e)=>{
+        e.stopPropagation()
+    })
+
+    //ALTERAR FILTRO RECENTES/POPULARIDADE/BEM AVALIADOS
+    const h1TitlePage = document.querySelector('.filmesFiltro h1')
+    const clickMenuItem = document.querySelector('.selectFiltro-menu > li')
+    const clickSubMenuItems = document.querySelectorAll('.selectFiltro-subMenu li')
+    clickSubMenuItems.forEach((value,index)=>{
+
+        clickSubMenuItems[index].addEventListener('click',()=>{
+
+            if(value.innerHTML === 'Popularidade'){
+
+                clickSubMenuItems[index].innerHTML = clickMenuItem.innerHTML
+                clickMenuItem.innerHTML = 'Popularidade'
+                h1TitlePage.innerHTML = 'Todos os Filmes Populares'
+                document.location.href = '?filter=popular'
+                refazerFetch(1,'popular')
+
+            }else if(value.innerHTML === 'Bem avaliados'){
+
+                clickSubMenuItems[index].innerHTML = clickMenuItem.innerHTML
+                clickMenuItem.innerHTML = 'Bem avaliados'
+                h1TitlePage.innerHTML = 'Todos os Filmes Bem Avaliados'
+                document.location.href = '?filter=top_rated'
+                refazerFetch(1,'top_rated')
+
+            }else if(value.innerHTML === 'Recentes'){
+
+                clickSubMenuItems[index].innerHTML = clickMenuItem.innerHTML
+                clickMenuItem.innerHTML = 'Recentes'
+                h1TitlePage.innerHTML = 'Todos os Filmes Recentes'
+                document.location.href = 'categorias.html'
+                refazerFetch(1,'now_playing')
+                
+            }else{
+                document.location.href = '404.html'
+            }
+
+        })
 
     })
 
-})
+}
+
 
 
 
