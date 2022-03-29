@@ -559,6 +559,19 @@ footer img {
   .bannerHomeSlider-bullets {
     margin-top: 1110px;
   }
+  footer .container {
+    padding: 20px 3% 10px 3%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  footer p {
+    margin: 20px 0;
+  }
 }
 
 @media screen and (max-width: 834px) {
