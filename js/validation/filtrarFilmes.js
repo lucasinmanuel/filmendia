@@ -102,7 +102,7 @@ function fetchFilmes(numPage,filterInitial,listGenres){
                 filterGenre(val,dataComplet,qtdCaractSinopse,qtdCaractTitle,generos)
 
             }else{
-
+                console.log('oiiiii'+val.id)
                 filmesRecentesImages.innerHTML += `
 
                     <div style="width:33.3%;display:flex;margin-bottom:15px;background-color:#1E1E1E;padding:10px;">
