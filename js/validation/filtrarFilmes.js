@@ -53,7 +53,7 @@ function fetchFilmes(numPage,filterInitial,listGenres){
     })
     .then(response => response.json())
     .then((jsonFilmes)=>{
-
+        console.log(jsonFilmes)
         const filmesRecentesImages = document.querySelector('.filmesRecentes-images')
         if(document.querySelector('.checkBox-ativado')){
             
