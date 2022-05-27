@@ -4,8 +4,8 @@ function initconfig(){
     const h1TitlePage = document.querySelector('.filmesFiltro h1')
     const clickMenuItem = document.querySelector('.selectFiltro-menu > li')
     const clickSubMenuItems = document.querySelectorAll('.selectFiltro-subMenu li')
-
-    if(window.location.href.substring(45,52) === 'popular'){
+ 
+    if(window.location.href.split('=')[1] === 'popular'){
 
         var filterInitial = 'popular'
         h1TitlePage.innerHTML = 'Todos os Filmes Populares'
@@ -13,7 +13,7 @@ function initconfig(){
         clickSubMenuItems[0].innerHTML = 'Bem avaliados'
         clickSubMenuItems[1].innerHTML = 'Recentes'
 
-    }else if(window.location.href.substring(45,54) === 'top_rated'){
+    }else if(window.location.href.split('=')[1] === 'top_rated'){
 
         var filterInitial = 'top_rated'
         h1TitlePage.innerHTML = 'Todos os Filmes Bem Avaliados'
